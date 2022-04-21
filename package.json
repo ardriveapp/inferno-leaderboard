@@ -1,34 +1,37 @@
 {
-	"name": "inferno-leaderboard",
-	"version": "0.1.0",
-	"description": "A leaderboard for the Inferno Rewards program",
-	"repository": "git@github.com:ardriveapp/inferno-leaderboard.git",
-	"license": "AGPL-3.0-or-later",
-	"author": {
-		"name": "Permanent Data Solutions Inc",
-		"email": "info@ardrive.io",
-		"website": "https://ardrive.io"
-	},
-	"scripts": {
-		"dev": "next dev",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint"
-	},
-	"dependencies": {
-		"next": "12.1.5",
-		"react": "18.0.0",
-		"react-dom": "18.0.0"
-	},
-	"devDependencies": {
-		"@types/node": "17.0.25",
-		"@types/react": "18.0.6",
-		"@types/react-dom": "18.0.2",
-		"eslint": "8.13.0",
-		"eslint-config-next": "12.1.5",
-		"eslint-config-prettier": "^8.5.0",
-		"prettier": "^2.6.2",
-		"typescript": "4.6.3"
-	},
-	"packageManager": "yarn@3.2.0"
+  "name": "inferno-leaderboard",
+  "version": "0.1.0",
+  "description": "A leaderboard for the Inferno Rewards program",
+  "repository": "git@github.com:ardriveapp/inferno-leaderboard.git",
+  "license": "AGPL-3.0-or-later",
+  "author": {
+    "name": "Permanent Data Solutions Inc",
+    "email": "info@ardrive.io",
+    "website": "https://ardrive.io"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "next": "12.1.5",
+    "react": "18.0.0",
+    "react-dom": "18.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "17.0.25",
+    "@types/react": "18.0.6",
+    "@types/react-dom": "18.0.2",
+    "eslint": "8.13.0",
+    "eslint-config-next": "12.1.5",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": ">=7",
+    "lint-staged": ">=10",
+    "prettier": "^2.6.2",
+    "typescript": "4.6.3"
+  },
+  "packageManager": "yarn@3.2.0"
 }
