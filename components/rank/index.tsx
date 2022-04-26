@@ -7,11 +7,9 @@ import device from '@utils/media_queries';
 import type { Data } from '@utils/dataType';
 
 const RankWrapper = styled.div`
-	background: #121212;
 	font-size: 0.75rem;
 
 	@media ${device.tablet} {
-		padding: 0 2rem;
 		font-size: 1rem;
 
 		& th {
@@ -44,6 +42,9 @@ const RankWrapper = styled.div`
 		text-align: left;
 		padding-top: 1.75rem;
 		padding-bottom: 1.75rem;
+		background: #121212;
+		position: sticky;
+		top: 0;
 
 		&:first-child {
 			padding-left: 1rem;
