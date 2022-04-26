@@ -1,0 +1,170 @@
+import styled from 'styled-components';
+import byteSize from 'byte-size';
+
+import { ArrowDown, ArrowUp } from '@components/icons';
+
+import device from '@utils/media_queries';
+import type { Data } from '@utils/dataType';
+
+const RankWrapper = styled.div`
+	background: #121212;
+	font-size: 0.75rem;
+
+	@media ${device.tablet} {
+		padding: 0 2rem;
+		font-size: 1rem;
+
+		& th {
+			&:first-child {
+				padding-left: 2rem;
+			}
+
+			&:last-child {
+				padding-right: 2rem;
+			}
+		}
+
+		& td {
+			&:first-child > span {
+				padding-left: 2rem;
+			}
+
+			&:last-child > span {
+				padding-right: 2rem;
+			}
+		}
+	}
+
+	& > table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	& th {
+		text-align: left;
+		padding-top: 1.75rem;
+		padding-bottom: 1.75rem;
+
+		&:first-child {
+			padding-left: 1rem;
+		}
+
+		&:last-child {
+			padding-right: 1rem;
+		}
+	}
+
+	& td {
+		&:first-child > span {
+			border-radius: 8px 0 0 8px;
+			padding-left: 1rem;
+		}
+
+		&:last-child > span {
+			border-radius: 0 8px 8px 0;
+			padding-right: 1rem;
+		}
+
+		& > span {
+			display: block;
+			background: #2c2c2c;
+			padding-top: 1rem;
+			padding-bottom: 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+`;
+
+const formatWalletAddress = (wallet: string): string => {
+	const first5Chars = wallet.slice(0, 5);
+	const last5Chars = wallet.slice(-5);
+
+	return `${first5Chars}...${last5Chars}`;
+};
+
+const positionIndicator = (position: number): string => {
+	const indicator = Math.abs(position);
+	const cent = indicator % 100;
+	if (cent >= 10 && cent <= 20) return 'th';
+	const dec = indicator % 10;
+	if (dec === 1) return 'st';
+	if (dec === 2) return 'nd';
+	if (dec === 3) return 'rd';
+	return 'th';
+};
+
+const calculateByteSize = (bytes: number): string => {
+	const size = byteSize(bytes, { units: 'iec' });
+	return `${size.value} ${size.unit}`;
+};
+
+const displayChangeInPercentage = (change: number): JSX.Element => {
+	let Arrow;
+	if (change > 0) {
+		Arrow = ArrowUp;
+	}
+	if (change < 0) {
+		Arrow = ArrowDown;
+	}
+
+	return (
+		<>
+			{Math.abs(change)}% {Arrow ? <Arrow /> : null}
+		</>
+	);
+};
+
+const Rank = ({ data }: { data: Data }): JSX.Element => {
+	const rankWallets = Object.keys(data.ranks.daily.groupEffortRewards);
+	const wallets = data.wallets;
+	const createRows = () =>
+		rankWallets.map((address, index) => {
+			const position = index + 1;
+			const wallet = wallets[address];
+			const walletDaily = wallet?.daily;
+			const byteSize = calculateByteSize(walletDaily?.byteCount || 0);
+			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage['7d'] || 0);
+			const changeInPercentage24h = displayChangeInPercentage(walletDaily?.changeInPercentage['24h'] || 0);
+			return (
+				<tr key={position}>
+					<td>
+						<span>{formatWalletAddress(address)}</span>
+					</td>
+					<td>
+						<span>
+							{position}
+							{positionIndicator(position)}
+						</span>
+					</td>
+					<td>
+						<span>{byteSize}</span>
+					</td>
+					<td>
+						<span>{changeInPercentage7d}</span>
+					</td>
+					<td>
+						<span>{changeInPercentage24h}</span>
+					</td>
+				</tr>
+			);
+		});
+
+	return (
+		<RankWrapper>
+			<table cellSpacing='0' cellPadding='0'>
+				<thead>
+					<tr>
+						<th>Address</th>
+						<th>Rank</th>
+						<th>Uploaded</th>
+						<th>24H%</th>
+						<th>7D%</th>
+					</tr>
+				</thead>
+				<tbody>{createRows()}</tbody>
+			</table>
+		</RankWrapper>
+	);
+};
+
+export default Rank;
