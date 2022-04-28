@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 import { ArrowDown, ArrowUp } from '@components/icons';
 
-import { device, formatBytes, formatWalletAddress } from '@utils';
 import type { Data } from '@utils';
+import { device, formatBytes, formatWalletAddress } from '@utils';
 
 const RankWrapper = styled.div`
 	font-size: 0.75rem;
@@ -87,17 +87,20 @@ const positionIndicator = (position: number): string => {
 };
 
 const displayChangeInPercentage = (change: number): JSX.Element => {
-	let Arrow;
-	if (change > 0) {
-		Arrow = ArrowUp;
-	}
-	if (change < 0) {
-		Arrow = ArrowDown;
-	}
+	const Arrow = () => {
+		if (change > 0) {
+			return <ArrowUp />;
+		}
+		if (change < 0) {
+			return <ArrowDown />;
+		}
+
+		return null;
+	};
 
 	return (
 		<>
-			{Math.abs(change)}% {Arrow ? <Arrow /> : null}
+			{Math.abs(change)}% <Arrow />
 		</>
 	);
 };
