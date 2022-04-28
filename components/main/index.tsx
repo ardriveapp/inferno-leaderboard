@@ -18,7 +18,7 @@ const MainWrapper = styled.main`
 	}
 `;
 
-const RankWrapper = styled.div`
+const RankWrapper = styled.section`
 	order: 1;
 	min-height: 0;
 	overflow-y: scroll;
@@ -50,7 +50,7 @@ const RankScroll = styled.div`
 	}
 `;
 
-const SidebarWrapper = styled.div`
+const SidebarWrapper = styled.aside`
 	min-height: 0;
 `;
 

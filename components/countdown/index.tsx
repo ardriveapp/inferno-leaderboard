@@ -3,57 +3,68 @@ import { useEffect, useState } from 'react';
 import Box from '@components/box';
 
 const getTargetDate = (): Date => {
+	// Get current date
 	const now = new Date();
-	const sundayNumber = 0;
-	const timezone = 'America/New_York';
+
+	// Set current date to 00:00:00
 	const today = new Date(now);
 	today.setMilliseconds(0);
 	today.setSeconds(0);
 	today.setMinutes(0);
 	today.setHours(0);
 
+	// Start next Sunday date
 	const nextSunday = new Date(today);
 
+	const sundayNumber = 0;
 	do {
 		nextSunday.setDate(nextSunday.getDate() + 1);
 	} while (nextSunday.getDay() !== sundayNumber);
 
+	const timezone = 'America/New_York';
+
 	return new Date(nextSunday.toLocaleString('en-US', { timeZone: timezone }));
 };
 
+const oneSecond = 1000;
+const oneMinute = oneSecond * 60;
+const oneHour = oneMinute * 60;
+const oneDay = oneHour * 24;
+
+const englishLocale = 'en-US';
+const toLocaleStringSettings = {
+	minimumIntegerDigits: 2,
+	useGrouping: false,
+};
+
 const getValues = (countDown: number): [string, string, string, string] => {
-	const days = Math.floor(countDown / (1000 * 60 * 60 * 24)).toLocaleString('en-US');
+	const days = Math.floor(countDown / oneDay).toLocaleString('en-US');
 
-	const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toLocaleString('en-US', {
-		minimumIntegerDigits: 2,
-		useGrouping: false,
-	});
+	const hours = Math.floor((countDown % oneDay) / oneHour).toLocaleString(englishLocale, toLocaleStringSettings);
 
-	const minutes = Math.floor((countDown % (1000 * 60 * 60)) / (1000 * 60)).toLocaleString('en-US', {
-		minimumIntegerDigits: 2,
-		useGrouping: false,
-	});
+	const minutes = Math.floor((countDown % oneHour) / oneMinute).toLocaleString(englishLocale, toLocaleStringSettings);
 
-	const seconds = Math.floor((countDown % (1000 * 60)) / 1000).toLocaleString('en-US', {
-		minimumIntegerDigits: 2,
-		useGrouping: false,
-	});
+	const seconds = Math.floor((countDown % oneMinute) / oneSecond).toLocaleString(
+		englishLocale,
+		toLocaleStringSettings,
+	);
 
 	return [days, hours, minutes, seconds];
 };
 
 const Countdown = (): JSX.Element => {
-	const targetDate = getTargetDate().getTime();
+	const targetTime = getTargetDate().getTime();
+	const getCurrentTime = () => new Date().getTime();
 
-	const [countDown, setCountDown] = useState(targetDate - new Date().getTime());
+	const [countDown, setCountDown] = useState(targetTime - getCurrentTime());
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setCountDown(targetDate - new Date().getTime());
+			setCountDown(targetTime - getCurrentTime());
 		}, 1000);
 
 		return () => clearInterval(interval);
-	}, [targetDate]);
+	}, [targetTime]);
 
 	const [days, hours, minutes, seconds] = getValues(countDown);
 

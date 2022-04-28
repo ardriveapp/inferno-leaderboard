@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import Footer from '@components/footer';
 
-describe('Box', () => {
+describe('Footer', () => {
 	it('renders last updated', () => {
-		const minutesAgo = new Date().getTime() - 1800000;
+		const thirtyMinutesAgo = new Date().getTime() - 1_800_000;
 		const { container } = render(<Footer lastUpdated={minutesAgo} />);
 
 		const text = screen.getByText('30 minutes ago');
