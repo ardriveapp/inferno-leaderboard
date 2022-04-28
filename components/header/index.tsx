@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import { Wrapper } from '@components/box';
+import { BoxWrapper } from '@components/box';
 
 import { device } from '@utils';
 
-const HeaderWrapper = styled(Wrapper)`
+const HeaderWrapper = styled(BoxWrapper)`
 	display: none;
 
 	@media ${device.tablet} {
