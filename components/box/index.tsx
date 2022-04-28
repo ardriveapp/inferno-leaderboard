@@ -4,10 +4,7 @@ import { ArrowUp, ArrowDown } from '@components/icons';
 
 import { device } from '@utils';
 
-type BoxWrapperProps = {
-	hiddenOnDesktop?: boolean;
-};
-export const BoxWrapper = styled.div<BoxWrapperProps>`
+export const BoxWrapper = styled.div`
 	background: #121212;
 	color: #fff;
 
@@ -21,11 +18,6 @@ export const BoxWrapper = styled.div<BoxWrapperProps>`
 
 	font-size: 1.125rem;
 	font-weight: 400;
-
-	@media ${device.tablet} {
-		font-size: 1.375rem;
-		display: ${({ hiddenOnDesktop }) => (hiddenOnDesktop ? 'none' : 'flex')};
-	}
 `;
 
 const Text = styled.div`
@@ -40,6 +32,7 @@ const DescriptionWrapper = styled.div`
 
 const Description = styled.span`
 	font-size: 0.75rem;
+	text-align: center;
 
 	@media ${device.tablet} {
 		font-size: 1.125rem;
@@ -57,24 +50,32 @@ const Box = ({
 	arrowUp,
 	description,
 	text,
-	hiddenOnDesktop,
 }: {
 	arrowDown?: boolean;
 	arrowUp?: boolean;
 	description?: string;
 	text: string | number;
-	hiddenOnDesktop?: boolean;
-}): JSX.Element => (
-	<BoxWrapper hiddenOnDesktop={hiddenOnDesktop}>
-		<Text>{text}</Text>
-		{description && (
-			<DescriptionWrapper>
-				<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
-				{arrowUp ? <ArrowUp /> : null}
-				{arrowDown ? <ArrowDown /> : null}
-			</DescriptionWrapper>
-		)}
-	</BoxWrapper>
-);
+}): JSX.Element => {
+	const title = (() => {
+		if (typeof text === 'number' && text === 0) {
+			return '-';
+		}
+
+		return text;
+	})();
+
+	return (
+		<BoxWrapper>
+			<Text>{title}</Text>
+			{description && (
+				<DescriptionWrapper>
+					<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
+					{arrowUp ? <ArrowUp /> : null}
+					{arrowDown ? <ArrowDown /> : null}
+				</DescriptionWrapper>
+			)}
+		</BoxWrapper>
+	);
+};
 
 export default Box;
