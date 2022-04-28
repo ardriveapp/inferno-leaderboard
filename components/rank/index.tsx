@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ArrowDown, ArrowUp } from '@components/icons';
 
 import type { Data } from '@utils';
-import { device, formatBytes, formatWalletAddress } from '@utils';
+import { device, formatBytes, formatWalletAddress, positionIndicator } from '@utils';
 
 const RankWrapper = styled.div`
 	font-size: 0.75rem;
@@ -75,17 +75,6 @@ const RankWrapper = styled.div`
 	}
 `;
 
-const positionIndicator = (position: number): string => {
-	const indicator = Math.abs(position);
-	const cent = indicator % 100;
-	if (cent >= 10 && cent <= 20) return 'th';
-	const dec = indicator % 10;
-	if (dec === 1) return 'st';
-	if (dec === 2) return 'nd';
-	if (dec === 3) return 'rd';
-	return 'th';
-};
-
 const displayChangeInPercentage = (change: number): JSX.Element => {
 	const Arrow = () => {
 		if (change > 0) {
@@ -122,10 +111,7 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 						<span>{formatWalletAddress(address)}</span>
 					</td>
 					<td>
-						<span>
-							{position}
-							{positionIndicator(position)}
-						</span>
+						<span>{positionIndicator(position)}</span>
 					</td>
 					<td>
 						<span>{byteSize}</span>
