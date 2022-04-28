@@ -4,7 +4,7 @@ import Rank from '@components/rank';
 import Sidebar from '@components/sidebar';
 
 import device from '@utils/media_queries';
-import type { Data } from '@utils/dataType';
+import type { Data } from '../../types/dataType';
 
 const MainWrapper = styled.main`
 	margin-top: 1.375rem;

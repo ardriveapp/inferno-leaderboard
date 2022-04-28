@@ -1,10 +1,10 @@
 import type { NextPage } from 'next';
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
 import Header from '@components/header';
 import Main from '@components/main';
 import Footer from '@components/footer';
-import Logo from '@components/logo';
 
 import device from '@utils/media_queries';
 
@@ -38,10 +38,11 @@ const Page = styled.div`
 	}
 `;
 
+Modal.setAppElement('#__next');
+
 const Home: NextPage = (): JSX.Element => (
 	<Background>
 		<Page>
-			<Logo />
 			<Header />
 			<Main data={mock} />
 			<Footer lastUpdated={1651001300883} />

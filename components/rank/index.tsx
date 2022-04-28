@@ -4,7 +4,8 @@ import byteSize from 'byte-size';
 import { ArrowDown, ArrowUp } from '@components/icons';
 
 import device from '@utils/media_queries';
-import type { Data } from '@utils/dataType';
+import type { Data } from '../../types/dataType';
+import formatWalletAddress from '@utils/formatWalletAddress';
 
 const RankWrapper = styled.div`
 	font-size: 0.75rem;
@@ -75,13 +76,6 @@ const RankWrapper = styled.div`
 		}
 	}
 `;
-
-const formatWalletAddress = (wallet: string): string => {
-	const first5Chars = wallet.slice(0, 5);
-	const last5Chars = wallet.slice(-5);
-
-	return `${first5Chars}...${last5Chars}`;
-};
 
 const positionIndicator = (position: number): string => {
 	const indicator = Math.abs(position);
