@@ -36,10 +36,7 @@ const RankScroll = styled.div`
 	@media ${device.tablet} {
 		padding: 0 1rem 0 2rem;
 		margin-right: 1rem;
-
-		& {
-			scrollbar-color: #2c2c2c transparent;
-		}
+		scrollbar-color: #2c2c2c transparent;
 
 		&::-webkit-scrollbar {
 			width: 10px;
