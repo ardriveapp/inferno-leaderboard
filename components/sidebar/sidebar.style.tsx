@@ -4,56 +4,42 @@ import { device } from '@utils';
 
 export const SidebarWrapper = styled.div`
 	display: grid;
-	gap: 1rem;
 	height: 100%;
-	grid-template-rows: 0.815fr 1.195fr;
-	align-items: stretch;
-`;
-
-export const MobileItems = styled.div`
-	display: grid;
+	gap: 0.625rem;
 	grid-template-columns: 2fr 1fr;
-	gap: 1rem;
+	align-items: stretch;
 
 	@media ${device.tablet} {
+		gap: 1rem;
+		grid-template-rows: 1fr 60px 1fr 1fr 1fr 1fr;
 		grid-template-columns: auto;
 	}
 `;
 
-export const MobileItemsFirstRow = styled.div`
+export const StatsMobileSecondRow = styled.div`
+	width: calc(150% + 0.625rem);
+
 	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: 1rem;
-`;
-
-export const DesktopItems = styled.div`
-	display: none;
-
-	@media ${device.tablet} {
-		display: grid;
-		gap: 1rem;
-	}
+	gap: 0.625rem;
+	grid-template-columns: 1fr 1fr 1fr;
 `;
 
 type SelectorWrapperProps = {
 	hasWallet: boolean;
 };
 export const SelectorWrapper = styled.div<SelectorWrapperProps>`
-	display: none;
-
-	@media ${device.tablet} {
-		height: 60px;
-		display: grid;
-		grid-template-columns: ${({ hasWallet }) => (hasWallet ? '1fr 1fr' : 'auto')};
-		gap: 0.125rem;
-		align-items: center;
-	}
+	height: 60px;
+	display: grid;
+	grid-template-columns: ${({ hasWallet }) => (hasWallet ? '1fr 1fr' : 'auto')};
+	gap: 0.125rem;
+	align-items: center;
 `;
 
 type SelectorProps = {
 	left?: boolean;
 	right?: boolean;
-	selected: boolean;
+	hasWallet?: boolean;
+	selected?: boolean;
 };
 export const Selector = styled.button<SelectorProps>`
 	all: unset;
@@ -61,7 +47,7 @@ export const Selector = styled.button<SelectorProps>`
 	background: ${({ selected }) => (selected ? '#2c2c2c' : '#1c1c1c')};
 	color: #fff;
 
-	cursor: ${({ left, right }) => (left && right ? 'pointer' : 'default')};
+	cursor: ${({ hasWallet }) => (hasWallet ? 'pointer' : 'default')};
 
 	border-radius: 8px;
 	border-radius: ${({ left, right }) => {
@@ -80,38 +66,4 @@ export const Selector = styled.button<SelectorProps>`
 	text-align: center;
 
 	height: 100%;
-`;
-
-export const FirstRowMobile = styled.div`
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-
-	@media ${device.tablet} {
-		display: grid;
-		grid-template-columns: auto;
-		grid-template-rows: 1fr 1fr;
-		gap: 1rem;
-		align-items: stretch;
-	}
-`;
-
-export const SecondRowMobile = styled.div`
-	display: grid;
-	grid-template-columns: 1fr 1fr 1fr;
-
-	@media ${device.tablet} {
-		display: grid;
-		grid-template-rows: 1fr 1fr 1fr 1fr;
-		gap: 1rem;
-	}
-`;
-
-export const StatsDesktop = styled.div`
-	display: none;
-
-	@media ${device.tablet} {
-		display: grid;
-		grid-template-rows: 1fr 1fr 1fr 1fr;
-		gap: 1rem;
-	}
 `;
