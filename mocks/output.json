@@ -8,30 +8,20 @@
 		"ka_hAAWru0qzK0KprCbvHX5J6QJtkxEiDOHMM1kNBs8": {
 			"daily": {
 				"byteCount": 1000000,
-				"changeInPercentage": {
-					"24h": -50,
-					"7d": 40
-				},
+				"changeInPercentage": -50,
 				"fileCount": 10,
 				"rankPosition": 49,
 				"tokensEarned": 100
 			},
 			"weekly": {
 				"byteCount": 100,
-				"changeInPercentage": {
-					"24h": -50,
-					"7d": 40
-				},
+				"changeInPercentage": 40,
 				"fileCount": 10,
 				"rankPosition": 49,
 				"tokensEarned": 100
 			},
 			"total": {
 				"byteCount": 100,
-				"changeInPercentage": {
-					"24h": -50,
-					"7d": 40
-				},
 				"fileCount": 10,
 				"rankPosition": 49,
 				"tokensEarned": 100
