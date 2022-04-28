@@ -102,9 +102,11 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 			const position = index + 1;
 			const wallet = wallets[address];
 			const walletDaily = wallet?.daily;
+			const walletWeekly = wallet?.weekly;
 			const byteSize = formatBytes(walletDaily?.byteCount || 0);
-			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage['7d'] || 0);
-			const changeInPercentage24h = displayChangeInPercentage(walletDaily?.changeInPercentage['24h'] || 0);
+			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage || 0);
+			const changeInPercentage24h = displayChangeInPercentage(walletWeekly?.changeInPercentage || 0);
+
 			return (
 				<tr key={position}>
 					<td>

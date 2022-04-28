@@ -1,19 +1,18 @@
-type WalletProperties = {
+interface WalletProperties {
 	byteCount: number;
-	changeInPercentage: {
-		'24h': number;
-		'7d': number;
-	};
+	changeInPercentage: number;
 	fileCount: number;
 	rankPosition: number;
 	tokensEarned: number;
-};
+}
+
+type WalletPropertiesTotal = Omit<WalletProperties, 'changeInPercentage'>;
 
 type Wallets = {
 	[wallet: string]: {
 		daily: WalletProperties;
 		weekly: WalletProperties;
-		total: WalletProperties;
+		total: WalletPropertiesTotal;
 	};
 };
 
@@ -32,6 +31,7 @@ type Data = {
 		daily: Ranks;
 		weekly: Ranks;
 		lastWeek: Ranks;
+		total: Ranks;
 	};
 };
 
