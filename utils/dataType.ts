@@ -31,6 +31,7 @@ type Data = {
 		daily: Ranks;
 		weekly: Ranks;
 		lastWeek: Ranks;
+		total: Ranks;
 	};
 };
 
