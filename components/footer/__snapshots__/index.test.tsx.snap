@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Box renders last updated 1`] = `
+exports[`Footer renders last updated 1`] = `
 <div>
   <footer
     class="sc-bczRLJ dcLlNR"
