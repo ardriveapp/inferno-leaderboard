@@ -4,7 +4,10 @@ import { ArrowUp, ArrowDown } from '@components/icons';
 
 import { device } from '@utils';
 
-export const BoxWrapper = styled.div`
+type BoxWrapperProps = {
+	hiddenOnDesktop?: boolean;
+};
+export const BoxWrapper = styled.div<BoxWrapperProps>`
 	background: #121212;
 	color: #fff;
 
@@ -21,6 +24,7 @@ export const BoxWrapper = styled.div`
 
 	@media ${device.tablet} {
 		font-size: 1.375rem;
+		display: ${({ hiddenOnDesktop }) => (hiddenOnDesktop ? 'none' : 'flex')};
 	}
 `;
 
@@ -53,19 +57,23 @@ const Box = ({
 	arrowUp,
 	description,
 	text,
+	hiddenOnDesktop,
 }: {
 	arrowDown?: boolean;
 	arrowUp?: boolean;
-	description: string;
+	description?: string;
 	text: string | number;
+	hiddenOnDesktop?: boolean;
 }): JSX.Element => (
-	<BoxWrapper>
+	<BoxWrapper hiddenOnDesktop={hiddenOnDesktop}>
 		<Text>{text}</Text>
-		<DescriptionWrapper>
-			<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
-			{arrowUp ? <ArrowUp /> : null}
-			{arrowDown ? <ArrowDown /> : null}
-		</DescriptionWrapper>
+		{description && (
+			<DescriptionWrapper>
+				<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
+				{arrowUp ? <ArrowUp /> : null}
+				{arrowDown ? <ArrowDown /> : null}
+			</DescriptionWrapper>
+		)}
 	</BoxWrapper>
 );
 

@@ -8,6 +8,8 @@ import Footer from '@components/footer';
 
 import { device } from '@utils';
 
+import { WalletContextProvider } from '@contexts/wallet_address';
+
 import mock from '../mocks/output.json';
 
 const Background = styled.div`
@@ -41,13 +43,15 @@ const Page = styled.div`
 Modal.setAppElement('#__next');
 
 const Home: NextPage = (): JSX.Element => (
-	<Background>
-		<Page>
-			<Header />
-			<Main data={mock} />
-			<Footer lastUpdated={1651001300883} />
-		</Page>
-	</Background>
+	<WalletContextProvider>
+		<Background>
+			<Page>
+				<Header />
+				<Main data={mock} />
+				<Footer lastUpdated={1651001300883} />
+			</Page>
+		</Background>
+	</WalletContextProvider>
 );
 
 export default Home;

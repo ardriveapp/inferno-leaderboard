@@ -1,36 +1,27 @@
+import { useContext, useState } from 'react';
 import dynamic from 'next/dynamic';
-import styled from 'styled-components';
 
 import Box from '@components/box';
+import {
+	SidebarWrapper,
+	MobileItems,
+	DesktopItems,
+	SelectorWrapper,
+	Selector,
+	GroupStatsMobile,
+	StatsDesktop,
+	FirstRowMobile,
+	SecondRowMobile,
+} from '@components/sidebar/sidebar.style';
 
-import { device } from '@utils';
+import WalletContext from '@contexts/wallet_address';
 
 const Countdown = dynamic(() => import('@components/countdown'), { ssr: false });
 
-const Wrapper = styled.div`
-	display: grid;
-	gap: 1rem;
-	height: 100%;
-`;
-
-const MobileItems = styled.div`
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	gap: 1rem;
-
-	@media ${device.tablet} {
-		grid-template-columns: auto;
-	}
-`;
-
-const DesktopItems = styled.div`
-	display: none;
-
-	@media ${device.tablet} {
-		display: grid;
-		gap: 1rem;
-	}
-`;
+enum SelectMode {
+	Group,
+	Personal,
+}
 
 const Sidebar = ({
 	uploaders,
@@ -42,18 +33,53 @@ const Sidebar = ({
 	data?: number;
 	files?: number;
 	streakers?: number;
-}): JSX.Element => (
-	<Wrapper>
-		<MobileItems>
-			<Countdown />
-			{uploaders && <Box text={uploaders} description='Uploaders' />}
-		</MobileItems>
-		<DesktopItems>
-			{data && <Box text={`${data} GB`} description='Data Uploaded' />}
-			{files && <Box text={files} description='Files Uploaded' />}
-			{streakers && <Box text={streakers} description='Streakers' arrowUp />}
-		</DesktopItems>
-	</Wrapper>
-);
+}): JSX.Element => {
+	const [walletAddress] = useContext(WalletContext);
+	const [selected, setSelected] = useState(SelectMode.Group);
+	const hasWallet = Boolean(walletAddress);
+	const personalStatsSelected = selected === SelectMode.Personal;
+
+	return (
+		<SidebarWrapper>
+			<FirstRowMobile>
+				<Countdown />
+				<SelectorWrapper hasWallet={hasWallet}>
+					<Selector
+						left={hasWallet}
+						selected={selected === SelectMode.Group}
+						onClick={() => setSelected(SelectMode.Group)}
+					>
+						Group Stats
+					</Selector>
+					{hasWallet && (
+						<Selector
+							right
+							selected={selected === SelectMode.Personal}
+							onClick={() => setSelected(SelectMode.Personal)}
+						>
+							Your Stats
+						</Selector>
+					)}
+				</SelectorWrapper>
+				<Box hiddenOnDesktop text='151 GB' description='Data Uploaded' />
+			</FirstRowMobile>
+			{personalStatsSelected ? (
+				<SecondRowMobile>
+					<Box text={3} description='Rank' />
+					<Box text={`${data} GB`} description='Data Uploaded' />
+					<Box text={10} description='Files Uploaded' />
+					<Box text={10} description='Streaks Completed' />
+				</SecondRowMobile>
+			) : (
+				<StatsDesktop>
+					<Box text={255} description='Uploaders' />
+					<Box text={`${data} GB`} description='Data Uploaded' />
+					<Box text={10} description='Files Uploaded' />
+					<Box text={10} description='Streakers' />
+				</StatsDesktop>
+			)}
+		</SidebarWrapper>
+	);
+};
 
 export default Sidebar;

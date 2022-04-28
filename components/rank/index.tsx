@@ -1,79 +1,11 @@
-import styled from 'styled-components';
+import { useContext } from 'react';
 
 import { ArrowDown, ArrowUp } from '@components/icons';
+import { RankWrapper } from '@components/rank/rank.style';
 
 import type { Data } from '../../types/dataType';
-import { device, formatBytes, formatWalletAddress, positionIndicator } from '@utils';
-
-const RankWrapper = styled.div`
-	font-size: 0.75rem;
-
-	@media ${device.tablet} {
-		font-size: 1rem;
-
-		& th {
-			&:first-child {
-				padding-left: 2rem;
-			}
-
-			&:last-child {
-				padding-right: 2rem;
-			}
-		}
-
-		& td {
-			&:first-child > span {
-				padding-left: 2rem;
-			}
-
-			&:last-child > span {
-				padding-right: 2rem;
-			}
-		}
-	}
-
-	& > table {
-		width: 100%;
-		border-collapse: collapse;
-	}
-
-	& th {
-		text-align: left;
-		padding-top: 1.75rem;
-		padding-bottom: 1.75rem;
-		background: #121212;
-		position: sticky;
-		top: 0;
-
-		&:first-child {
-			padding-left: 1rem;
-		}
-
-		&:last-child {
-			padding-right: 1rem;
-		}
-	}
-
-	& td {
-		&:first-child > span {
-			border-radius: 8px 0 0 8px;
-			padding-left: 1rem;
-		}
-
-		&:last-child > span {
-			border-radius: 0 8px 8px 0;
-			padding-right: 1rem;
-		}
-
-		& > span {
-			display: block;
-			background: #2c2c2c;
-			padding-top: 1rem;
-			padding-bottom: 1rem;
-			margin-bottom: 1rem;
-		}
-	}
-`;
+import { formatBytes, formatWalletAddress, positionIndicator } from '@utils';
+import WalletContext from '@contexts/wallet_address';
 
 const displayChangeInPercentage = (change: number): JSX.Element => {
 	const Arrow = () => {
@@ -95,8 +27,11 @@ const displayChangeInPercentage = (change: number): JSX.Element => {
 };
 
 const Rank = ({ data }: { data: Data }): JSX.Element => {
+	const [walletAddress] = useContext(WalletContext);
+
 	const rankWallets = Object.keys(data.ranks.daily.groupEffortRewards);
 	const wallets = data.wallets;
+
 	const createRows = () =>
 		rankWallets.map((address, index) => {
 			const position = index + 1;
