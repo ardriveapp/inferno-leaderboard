@@ -19,7 +19,6 @@
 		"test:ci": "jest"
 	},
 	"dependencies": {
-		"byte-size": "^8.1.0",
 		"dayjs": "^1.11.1",
 		"next": "12.1.5",
 		"react": "18.0.0",

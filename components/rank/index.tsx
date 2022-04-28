@@ -1,11 +1,9 @@
 import styled from 'styled-components';
-import byteSize from 'byte-size';
 
 import { ArrowDown, ArrowUp } from '@components/icons';
 
-import device from '@utils/media_queries';
 import type { Data } from '../../types/dataType';
-import formatWalletAddress from '@utils/formatWalletAddress';
+import { device, formatBytes, formatWalletAddress, positionIndicator } from '@utils';
 
 const RankWrapper = styled.div`
 	font-size: 0.75rem;
@@ -77,34 +75,21 @@ const RankWrapper = styled.div`
 	}
 `;
 
-const positionIndicator = (position: number): string => {
-	const indicator = Math.abs(position);
-	const cent = indicator % 100;
-	if (cent >= 10 && cent <= 20) return 'th';
-	const dec = indicator % 10;
-	if (dec === 1) return 'st';
-	if (dec === 2) return 'nd';
-	if (dec === 3) return 'rd';
-	return 'th';
-};
-
-const calculateByteSize = (bytes: number): string => {
-	const size = byteSize(bytes, { units: 'iec' });
-	return `${size.value} ${size.unit}`;
-};
-
 const displayChangeInPercentage = (change: number): JSX.Element => {
-	let Arrow;
-	if (change > 0) {
-		Arrow = ArrowUp;
-	}
-	if (change < 0) {
-		Arrow = ArrowDown;
-	}
+	const Arrow = () => {
+		if (change > 0) {
+			return <ArrowUp />;
+		}
+		if (change < 0) {
+			return <ArrowDown />;
+		}
+
+		return null;
+	};
 
 	return (
 		<>
-			{Math.abs(change)}% {Arrow ? <Arrow /> : null}
+			{Math.abs(change)}% <Arrow />
 		</>
 	);
 };
@@ -117,7 +102,7 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 			const position = index + 1;
 			const wallet = wallets[address];
 			const walletDaily = wallet?.daily;
-			const byteSize = calculateByteSize(walletDaily?.byteCount || 0);
+			const byteSize = formatBytes(walletDaily?.byteCount || 0);
 			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage['7d'] || 0);
 			const changeInPercentage24h = displayChangeInPercentage(walletDaily?.changeInPercentage['24h'] || 0);
 			return (
@@ -126,10 +111,7 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 						<span>{formatWalletAddress(address)}</span>
 					</td>
 					<td>
-						<span>
-							{position}
-							{positionIndicator(position)}
-						</span>
+						<span>{positionIndicator(position)}</span>
 					</td>
 					<td>
 						<span>{byteSize}</span>

@@ -21,7 +21,7 @@ const getTargetDate = (): Date => {
 	return new Date(nextSunday.toLocaleString('en-US', { timeZone: timezone }));
 };
 
-const getValues = (countDown: number): string[] => {
+const getValues = (countDown: number): [string, string, string, string] => {
 	const days = Math.floor(countDown / (1000 * 60 * 60 * 24)).toLocaleString('en-US');
 
 	const hours = Math.floor((countDown % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toLocaleString('en-US', {

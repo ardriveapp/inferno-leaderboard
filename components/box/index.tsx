@@ -2,9 +2,9 @@ import styled, { css } from 'styled-components';
 
 import { ArrowUp, ArrowDown } from '@components/icons';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
-export const Wrapper = styled.div`
+export const BoxWrapper = styled.div`
 	background: #121212;
 	color: #fff;
 
@@ -59,14 +59,14 @@ const Box = ({
 	description: string;
 	text: string | number;
 }): JSX.Element => (
-	<Wrapper>
+	<BoxWrapper>
 		<Text>{text}</Text>
 		<DescriptionWrapper>
 			<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
 			{arrowUp ? <ArrowUp /> : null}
 			{arrowDown ? <ArrowDown /> : null}
 		</DescriptionWrapper>
-	</Wrapper>
+	</BoxWrapper>
 );
 
 export default Box;

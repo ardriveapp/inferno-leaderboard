@@ -7,7 +7,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 }
 
 export function reportWebVitals(metric: NextWebVitalsMetric): void {
-	if (process.env.NODE_ENV === 'development') console.log(metric);
+	if (process.env.NODE_ENV === 'development') {
+		console.info(metric.name, 'metrics: ', metric);
+	}
 }
 
 export default MyApp;

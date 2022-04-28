@@ -42,7 +42,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.2"],\
             ["@types/react-modal", "npm:3.13.1"],\
             ["@types/styled-components", "npm:5.1.25"],\
-            ["byte-size", "npm:8.1.0"],\
             ["dayjs", "npm:1.11.1"],\
             ["eslint", "npm:8.13.0"],\
             ["eslint-config-next", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:12.1.5"],\
@@ -2439,15 +2438,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
-      ["byte-size", [\
-        ["npm:8.1.0", {\
-          "packageLocation": "./.yarn/cache/byte-size-npm-8.1.0-4b0c9460a1-8395264954.zip/node_modules/byte-size/",\
-          "packageDependencies": [\
-            ["byte-size", "npm:8.1.0"]\
-          ],\
-          "linkType": "HARD"\
-        }]\
-      ]],\
       ["cacache", [\
         ["npm:16.0.6", {\
           "packageLocation": "./.yarn/cache/cacache-npm-16.0.6-a071dd45cd-c9813d4aa0.zip/node_modules/cacache/",\
@@ -4403,7 +4393,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/react-dom", "npm:18.0.2"],\
             ["@types/react-modal", "npm:3.13.1"],\
             ["@types/styled-components", "npm:5.1.25"],\
-            ["byte-size", "npm:8.1.0"],\
             ["dayjs", "npm:1.11.1"],\
             ["eslint", "npm:8.13.0"],\
             ["eslint-config-next", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:12.1.5"],\

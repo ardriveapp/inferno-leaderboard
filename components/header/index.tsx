@@ -6,15 +6,26 @@ import ReactModal from 'react-modal';
 import arconnectLogo from '../../public/arconnect.png';
 
 import Logo from '@components/logo';
-import { Wrapper } from '@components/box';
+import { BoxWrapper } from '@components/box';
 
-import device from '@utils/media_queries';
-import formatWalletAddress from '@utils/formatWalletAddress';
+import { device, formatWalletAddress } from '@utils';
 
 const HeaderWrapper = styled.div`
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	align-items: center;
+`;
+
+const LeaderboardWrapper = styled(BoxWrapper)`
+	display: none;
+
+	@media ${device.tablet} {
+		display: flex;
+		height: 6.25rem;
+		padding: 0 4.25rem;
+		flex-direction: row;
+		justify-content: space-between;
+	}
 `;
 
 const ConnectWalletButton = styled.button`
@@ -41,18 +52,6 @@ const ConnectWalletButton = styled.button`
 			cursor: default;
 			border: 1px solid #fafafa;
 		`};
-`;
-
-const LeaderboardWrapper = styled(Wrapper)`
-	display: none;
-
-	@media ${device.tablet} {
-		display: flex;
-		height: 6.25rem;
-		padding: 0 4.25rem;
-		flex-direction: row;
-		justify-content: space-between;
-	}
 `;
 
 const Title = styled.h2`

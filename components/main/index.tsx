@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Rank from '@components/rank';
 import Sidebar from '@components/sidebar';
 
-import device from '@utils/media_queries';
 import type { Data } from '../../types/dataType';
+import { device } from '@utils';
 
 const MainWrapper = styled.main`
 	margin-top: 1.375rem;
@@ -36,10 +36,7 @@ const RankScroll = styled.div`
 	@media ${device.tablet} {
 		padding: 0 1rem 0 2rem;
 		margin-right: 1rem;
-
-		& {
-			scrollbar-color: #2c2c2c transparent;
-		}
+		scrollbar-color: #2c2c2c transparent;
 
 		&::-webkit-scrollbar {
 			width: 10px;

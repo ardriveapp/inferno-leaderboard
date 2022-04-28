@@ -6,7 +6,7 @@ import Header from '@components/header';
 import Main from '@components/main';
 import Footer from '@components/footer';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
 import mock from '../mocks/output.json';
 
