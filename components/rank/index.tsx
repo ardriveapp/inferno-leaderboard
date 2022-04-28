@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import byteSize from 'byte-size';
 
 import { ArrowDown, ArrowUp } from '@components/icons';
 
-import device from '@utils/media_queries';
-import type { Data } from '@utils/dataType';
+import { device, formatBytes, formatWalletAddress } from '@utils';
+import type { Data } from '@utils';
 
 const RankWrapper = styled.div`
 	font-size: 0.75rem;
@@ -76,13 +75,6 @@ const RankWrapper = styled.div`
 	}
 `;
 
-const formatWalletAddress = (wallet: string): string => {
-	const first5Chars = wallet.slice(0, 5);
-	const last5Chars = wallet.slice(-5);
-
-	return `${first5Chars}...${last5Chars}`;
-};
-
 const positionIndicator = (position: number): string => {
 	const indicator = Math.abs(position);
 	const cent = indicator % 100;
@@ -92,11 +84,6 @@ const positionIndicator = (position: number): string => {
 	if (dec === 2) return 'nd';
 	if (dec === 3) return 'rd';
 	return 'th';
-};
-
-const calculateByteSize = (bytes: number): string => {
-	const size = byteSize(bytes, { units: 'iec' });
-	return `${size.value} ${size.unit}`;
 };
 
 const displayChangeInPercentage = (change: number): JSX.Element => {
@@ -123,7 +110,7 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 			const position = index + 1;
 			const wallet = wallets[address];
 			const walletDaily = wallet?.daily;
-			const byteSize = calculateByteSize(walletDaily?.byteCount || 0);
+			const byteSize = formatBytes(walletDaily?.byteCount || 0);
 			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage['7d'] || 0);
 			const changeInPercentage24h = displayChangeInPercentage(walletDaily?.changeInPercentage['24h'] || 0);
 			return (

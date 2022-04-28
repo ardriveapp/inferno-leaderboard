@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Box from '@components/box';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
 const Countdown = dynamic(() => import('@components/countdown'), { ssr: false });
 

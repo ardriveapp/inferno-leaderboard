@@ -1,8 +1,8 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 import { Wrapper } from '@components/box';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
 const HeaderWrapper = styled(Wrapper)`
 	display: none;

@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 
 import { ArrowUp, ArrowDown } from '@components/icons';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
 export const Wrapper = styled.div`
 	background: #121212;

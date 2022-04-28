@@ -5,7 +5,7 @@ dayjs.extend(relativeTime);
 
 import { TwitterLogo } from '@components/icons';
 
-import device from '@utils/media_queries';
+import { device } from '@utils';
 
 const FooterWrapper = styled.footer`
 	font-weight: 800;

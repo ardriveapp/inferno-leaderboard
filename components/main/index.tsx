@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Rank from '@components/rank';
 import Sidebar from '@components/sidebar';
 
-import device from '@utils/media_queries';
-import type { Data } from '@utils/dataType';
+import { device } from '@utils';
+import type { Data } from '@utils';
 
 const MainWrapper = styled.main`
 	margin-top: 1.375rem;
