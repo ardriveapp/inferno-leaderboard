@@ -70,7 +70,7 @@ const Countdown = (): JSX.Element => {
 
 	const countdown = `${days} : ${hours} : ${minutes} : ${seconds}`;
 
-	return <Box text={countdown} description='Cycle Countdown' />;
+	return <Box text={countdown} description='Next Reward Cycle' />;
 };
 
 export default Countdown;
