@@ -35,4 +35,4 @@ type Data = {
 	};
 };
 
-export type { Data };
+export type { Data, Wallets };

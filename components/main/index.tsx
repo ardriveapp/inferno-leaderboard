@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 
 import Rank from '@components/rank';
@@ -6,10 +7,15 @@ import Sidebar from '@components/sidebar';
 import type { Data } from '../../types/dataType';
 import { device } from '@utils';
 
-const MainWrapper = styled.main`
+import WalletContext from '@contexts/wallet_address';
+
+type MainWrapperProps = {
+	hasWallet: boolean;
+};
+const MainWrapper = styled.main<MainWrapperProps>`
 	margin-top: 1.375rem;
 	display: grid;
-	grid-template-rows: 100px 1fr;
+	grid-template-rows: ${({ hasWallet }) => (hasWallet ? 'calc(186px + 1.25rem) 1fr' : '93px 1fr')};
 	gap: 1rem;
 
 	@media ${device.tablet} {
@@ -54,17 +60,21 @@ const SidebarWrapper = styled.aside`
 	min-height: 0;
 `;
 
-const Main = ({ data }: { data: Data }): JSX.Element => (
-	<MainWrapper>
-		<RankWrapper>
-			<RankScroll>
-				<Rank data={data} />
-			</RankScroll>
-		</RankWrapper>
-		<SidebarWrapper>
-			<Sidebar uploaders={10} data={10} files={10} streakers={10} />
-		</SidebarWrapper>
-	</MainWrapper>
-);
+const Main = ({ data }: { data: Data }): JSX.Element => {
+	const [walletAddress] = useContext(WalletContext);
+
+	return (
+		<MainWrapper hasWallet={Boolean(walletAddress)}>
+			<RankWrapper>
+				<RankScroll>
+					<Rank data={data} />
+				</RankScroll>
+			</RankWrapper>
+			<SidebarWrapper>
+				<Sidebar data={data} />
+			</SidebarWrapper>
+		</MainWrapper>
+	);
+};
 
 export default Main;
