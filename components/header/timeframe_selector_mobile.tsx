@@ -10,11 +10,17 @@ import { CloseModalButton } from '@components/header/wallet_modal.style';
 import type { TimeframeSelectorOptions } from '@contexts/timeframe_selector';
 import TimeframeContext from '@contexts/timeframe_selector';
 
+import { device } from '@utils';
+
 const TimeframeSelectorMobileWrapper = styled(BoxWrapper)`
 	flex-direction: row;
 	justify-content: space-between;
 	padding-left: 1rem;
 	padding-right: 1rem;
+
+	@media ${device.tablet} {
+		display: none;
+	}
 `;
 
 const TimeframeButtonWrapper = styled.div`
