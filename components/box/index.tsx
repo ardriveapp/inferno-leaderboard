@@ -18,10 +18,6 @@ export const BoxWrapper = styled.div`
 
 	font-size: 1.125rem;
 	font-weight: 400;
-
-	@media ${device.tablet} {
-		font-size: 1.375rem;
-	}
 `;
 
 const Text = styled.div`
@@ -36,6 +32,7 @@ const DescriptionWrapper = styled.div`
 
 const Description = styled.span`
 	font-size: 0.75rem;
+	text-align: center;
 
 	@media ${device.tablet} {
 		font-size: 1.125rem;
@@ -56,17 +53,29 @@ const Box = ({
 }: {
 	arrowDown?: boolean;
 	arrowUp?: boolean;
-	description: string;
+	description?: string;
 	text: string | number;
-}): JSX.Element => (
-	<BoxWrapper>
-		<Text>{text}</Text>
-		<DescriptionWrapper>
-			<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
-			{arrowUp ? <ArrowUp /> : null}
-			{arrowDown ? <ArrowDown /> : null}
-		</DescriptionWrapper>
-	</BoxWrapper>
-);
+}): JSX.Element => {
+	const title = (() => {
+		if (typeof text === 'number' && text === 0) {
+			return '-';
+		}
+
+		return text;
+	})();
+
+	return (
+		<BoxWrapper>
+			<Text>{title}</Text>
+			{description && (
+				<DescriptionWrapper>
+					<Description hasArrow={Boolean(arrowDown || arrowUp)}>{description}</Description>
+					{arrowUp ? <ArrowUp /> : null}
+					{arrowDown ? <ArrowDown /> : null}
+				</DescriptionWrapper>
+			)}
+		</BoxWrapper>
+	);
+};
 
 export default Box;

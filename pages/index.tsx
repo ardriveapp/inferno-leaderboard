@@ -1,12 +1,14 @@
 import type { NextPage } from 'next';
 import styled from 'styled-components';
+import Modal from 'react-modal';
 
 import Header from '@components/header';
 import Main from '@components/main';
 import Footer from '@components/footer';
-import Logo from '@components/logo';
 
 import { device } from '@utils';
+
+import { WalletContextProvider } from '@contexts/wallet_address';
 
 import mock from '../mocks/output.json';
 
@@ -38,15 +40,18 @@ const Page = styled.div`
 	}
 `;
 
+Modal.setAppElement('#__next');
+
 const Home: NextPage = (): JSX.Element => (
-	<Background>
-		<Page>
-			<Logo />
-			<Header />
-			<Main data={mock} />
-			<Footer lastUpdated={1651001300883} />
-		</Page>
-	</Background>
+	<WalletContextProvider>
+		<Background>
+			<Page>
+				<Header />
+				<Main data={mock} />
+				<Footer lastUpdated={mock.timestamp} />
+			</Page>
+		</Background>
+	</WalletContextProvider>
 );
 
 export default Home;

@@ -1,31 +1,37 @@
-import styled from 'styled-components';
+import { useContext, useState } from 'react';
 
-import { BoxWrapper } from '@components/box';
+import Logo from '@components/logo';
+import WalletModal from '@components/header/wallet_modal';
 
-import { device } from '@utils';
+import { formatWalletAddress } from '@utils';
+import WalletContext from '@contexts/wallet_address';
 
-const HeaderWrapper = styled(BoxWrapper)`
-	display: none;
+import { ConnectWalletButton, HeaderWrapper, LeaderboardWrapper, Title } from './header.style';
 
-	@media ${device.tablet} {
-		display: flex;
-		height: 6.25rem;
-		padding: 0 4.25rem;
-		flex-direction: row;
-		justify-content: space-between;
-	}
-`;
+const Header = (): JSX.Element => {
+	const [showModal, setShowModal] = useState(false);
+	const [walletAddress, setWalletAddress] = useContext(WalletContext);
 
-const Title = styled.h2`
-	font-size: 1.5rem;
-	font-weight: 800;
-	margin: 0;
-`;
-
-const Header = (): JSX.Element => (
-	<HeaderWrapper as='header'>
-		<Title>Leaderboard</Title>
-	</HeaderWrapper>
-);
+	return (
+		<>
+			<HeaderWrapper>
+				<Logo />
+				{walletAddress ? (
+					<ConnectWalletButton isConnected>{formatWalletAddress(walletAddress)}</ConnectWalletButton>
+				) : (
+					<ConnectWalletButton onClick={() => setShowModal(true)}>Connect Wallet</ConnectWalletButton>
+				)}
+			</HeaderWrapper>
+			<LeaderboardWrapper as='header'>
+				<Title>Leaderboard</Title>
+			</LeaderboardWrapper>
+			<WalletModal
+				isOpen={showModal}
+				closeModal={() => setShowModal(false)}
+				setWalletAddress={setWalletAddress}
+			/>
+		</>
+	);
+};
 
 export default Header;

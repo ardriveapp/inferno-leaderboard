@@ -11,7 +11,9 @@ type WalletPropertiesTotal = Omit<WalletProperties, 'changeInPercentage'>;
 type Wallets = {
 	[wallet: string]: {
 		daily: WalletProperties;
+		yesterday: WalletProperties;
 		weekly: WalletProperties;
+		lastWeek: WalletProperties;
 		total: WalletPropertiesTotal;
 	};
 };
@@ -22,6 +24,8 @@ type Ranks = {
 	streakRewards: { [wallet: string]: number };
 };
 
+type RanksTotal = Omit<Ranks, 'hasReachedMinimumGroupEffort'>;
+
 type Data = {
 	blockHeight: number;
 	timestamp: number;
@@ -31,8 +35,8 @@ type Data = {
 		daily: Ranks;
 		weekly: Ranks;
 		lastWeek: Ranks;
-		total: Ranks;
+		total: RanksTotal;
 	};
 };
 
-export type { Data };
+export type { Data, Wallets };
