@@ -53,7 +53,8 @@ const WalletModal = ({
 
 	const onImportWalletSubmit = (e: FormEvent<HTMLFormElement>) => {
 		const data = new FormData(e.target as HTMLFormElement);
-		const walletAddress = data.get('wallet') ? String(data.get('wallet')) : '';
+		const walletData: unknown | undefined = data.get('wallet');
+		const walletAddress = walletData ? String(walletData) : '';
 		setImportedPublicWalletAddress(walletAddress);
 
 		const isValid = validateWalletAddress(walletAddress);
