@@ -22,7 +22,7 @@ const WalletModal = ({
 	setWalletAddress,
 }: {
 	isOpen: boolean;
-	closeModal: Function;
+	closeModal: () => void;
 	setWalletAddress: Dispatch<SetStateAction<string>>;
 }): JSX.Element => {
 	const [isArconnectAvailable, setIsArconnectAvailable] = useState(false);
