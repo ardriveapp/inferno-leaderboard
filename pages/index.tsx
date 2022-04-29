@@ -9,6 +9,7 @@ import Footer from '@components/footer';
 import { device } from '@utils';
 
 import { WalletContextProvider } from '@contexts/wallet_address';
+import { TimeframeContextProvider } from '@contexts/timeframe_selector';
 
 import mock from '../mocks/output.json';
 
@@ -44,13 +45,15 @@ Modal.setAppElement('#__next');
 
 const Home: NextPage = (): JSX.Element => (
 	<WalletContextProvider>
-		<Background>
-			<Page>
-				<Header />
-				<Main data={mock} />
-				<Footer lastUpdated={mock.timestamp} />
-			</Page>
-		</Background>
+		<TimeframeContextProvider>
+			<Background>
+				<Page>
+					<Header />
+					<Main data={mock} />
+					<Footer lastUpdated={mock.timestamp} />
+				</Page>
+			</Background>
+		</TimeframeContextProvider>
 	</WalletContextProvider>
 );
 

@@ -15,6 +15,7 @@ export const ModalContent = styled.div`
 	height: 100%;
 	align-items: center;
 	justify-items: center;
+	padding: 2rem 2.5rem;
 `;
 
 export const ModalText = styled.p`

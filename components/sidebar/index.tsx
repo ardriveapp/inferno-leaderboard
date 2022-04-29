@@ -11,13 +11,14 @@ import { formatBytes } from '@utils';
 import { Data, Wallets } from '../../types/dataType';
 
 import WalletContext from '@contexts/wallet_address';
+import TimeframeContext from '@contexts/timeframe_selector';
+
+import type { TimeframeSelectorOptions } from '@contexts/timeframe_selector';
 
 enum SelectMode {
 	Group,
 	Personal,
 }
-
-type TimeFrame = 'daily' | 'weekly' | 'total';
 
 type PersonalStatsProps = {
 	rank: number;
@@ -32,7 +33,7 @@ const getPersonalStats = ({
 }: {
 	wallets: Wallets;
 	wallet: string;
-	timeFrame: TimeFrame;
+	timeFrame: TimeframeSelectorOptions;
 }): PersonalStatsProps => {
 	const walletStats = wallets[wallet] ? wallets[wallet][timeFrame] : undefined;
 
@@ -50,7 +51,13 @@ type GroupStatsProps = {
 	filesUploaded: number;
 	streakers: number;
 };
-const getGroupStats = ({ wallets, timeFrame }: { wallets: Wallets; timeFrame: TimeFrame }): GroupStatsProps => {
+const getGroupStats = ({
+	wallets,
+	timeFrame,
+}: {
+	wallets: Wallets;
+	timeFrame: TimeframeSelectorOptions;
+}): GroupStatsProps => {
 	const walletValues = Object.values(wallets);
 
 	return walletValues.reduce(
@@ -119,6 +126,7 @@ const PersonalStats = ({
 
 const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 	const [walletAddress] = useContext(WalletContext);
+	const [timeframe] = useContext(TimeframeContext);
 	const [selected, setSelected] = useState(SelectMode.Group);
 	const [stats, setStats] = useState({
 		group: {
@@ -139,7 +147,7 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 	useEffect(() => {
 		const { uploaders, dataUploaded, filesUploaded, streakers } = getGroupStats({
 			wallets: data.wallets,
-			timeFrame: 'weekly',
+			timeFrame: timeframe,
 		});
 
 		setStats((prevStats) => ({
@@ -153,7 +161,7 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 				},
 			},
 		}));
-	}, [data.wallets]);
+	}, [data.wallets, timeframe]);
 
 	// set personal stats
 	useEffect(() => {
@@ -161,7 +169,7 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 			const { rank, dataUploaded, filesUploaded, daysStreaked } = getPersonalStats({
 				wallets: data.wallets,
 				wallet: walletAddress,
-				timeFrame: 'weekly',
+				timeFrame: timeframe,
 			});
 
 			setStats((prevStats) => ({
@@ -174,7 +182,7 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 				},
 			}));
 		}
-	}, [walletAddress, data.wallets]);
+	}, [walletAddress, data.wallets, timeframe]);
 
 	const isMobile = useMedia('(max-width: 768px)', true);
 	const isDesktop = !isMobile;
