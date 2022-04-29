@@ -713,22 +713,22 @@
 	"ranks": {
 		"daily": {
 			"hasReachedMinimumGroupEffort": false,
-			"groupEffortRewards": [],
-			"streakRewards": []
+			"groupEffortRewards": {},
+			"streakRewards": {}
 		},
 		"weekly": {
 			"hasReachedMinimumGroupEffort": false,
-			"groupEffortRewards": [],
-			"streakRewards": []
+			"groupEffortRewards": {},
+			"streakRewards": {}
 		},
 		"lastWeek": {
 			"hasReachedMinimumGroupEffort": false,
-			"groupEffortRewards": [],
-			"streakRewards": []
+			"groupEffortRewards": {},
+			"streakRewards": {}
 		},
 		"total": {
-			"groupEffortRewards": [],
-			"streakRewards": []
+			"groupEffortRewards": {},
+			"streakRewards": {}
 		}
 	}
 }
