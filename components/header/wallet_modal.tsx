@@ -1,10 +1,8 @@
 import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
-import Image from 'next/image';
 import ReactModal from 'react-modal';
 
 import { validateWalletAddress } from '@utils';
 
-import arconnectLogo from '../../public/arconnect.png';
 import {
 	CloseModalButton,
 	ImportWalletErrorMessage,
@@ -76,7 +74,7 @@ const WalletModal = ({
 				</ModalButton>
 				{isArconnectAvailable ? (
 					<ModalButton onClick={() => connectToArconnect()}>
-						<Image alt='ArConnect Logo' src={arconnectLogo} width={22} height={22} />
+						<img alt='ArConnect Logo' src='/arconnect.png' width={22} height={22} />
 						<span style={{ marginLeft: '16px' }}>ArConnect</span>
 					</ModalButton>
 				) : null}

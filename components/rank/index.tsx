@@ -1,8 +1,12 @@
+import { useContext } from 'react';
+
 import { ArrowDown, ArrowUp } from '@components/icons';
 import { RankWrapper } from '@components/rank/rank.style';
 
 import type { Data } from '../../types/dataType';
 import { formatBytes, formatWalletAddress, positionIndicator } from '@utils';
+
+import TimeframeContext from '@contexts/timeframe_selector';
 
 const displayChangeInPercentage = (change: number): JSX.Element => {
 	const Arrow = () => {
@@ -24,18 +28,20 @@ const displayChangeInPercentage = (change: number): JSX.Element => {
 };
 
 const Rank = ({ data }: { data: Data }): JSX.Element => {
-	const rankWallets = Object.keys(data.ranks.daily.groupEffortRewards);
+	const [timeframe] = useContext(TimeframeContext);
+	const rank = Object.keys(data.ranks[timeframe].groupEffortRewards);
 	const wallets = data.wallets;
 
 	const createRows = () =>
-		rankWallets.map((address, index) => {
+		rank.map((address, index) => {
 			const position = index + 1;
 			const wallet = wallets[address];
+			const walletStats = wallet[timeframe];
 			const walletDaily = wallet?.daily;
-			const walletWeekly = wallet?.weekly;
-			const byteSize = formatBytes(walletDaily?.byteCount || 0);
+			const walletLastWeek = wallet?.lastWeek;
+			const byteSize = formatBytes(walletStats?.byteCount || 0);
 			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage || 0);
-			const changeInPercentage24h = displayChangeInPercentage(walletWeekly?.changeInPercentage || 0);
+			const changeInPercentage24h = displayChangeInPercentage(walletLastWeek?.changeInPercentage || 0);
 
 			return (
 				<tr key={position}>

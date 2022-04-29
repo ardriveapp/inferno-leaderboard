@@ -7,6 +7,8 @@ import Sidebar from '@components/sidebar';
 import type { Data } from '../../types/dataType';
 import { device } from '@utils';
 
+import TimeframeSelectorMobile from '@components/header/timeframe_selector_mobile';
+
 import WalletContext from '@contexts/wallet_address';
 
 type MainWrapperProps = {
@@ -73,6 +75,7 @@ const Main = ({ data }: { data: Data }): JSX.Element => {
 			<SidebarWrapper>
 				<Sidebar data={data} />
 			</SidebarWrapper>
+			<TimeframeSelectorMobile />
 		</MainWrapper>
 	);
 };
