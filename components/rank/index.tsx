@@ -1,11 +1,8 @@
-import { useContext } from 'react';
-
 import { ArrowDown, ArrowUp } from '@components/icons';
 import { RankWrapper } from '@components/rank/rank.style';
 
 import type { Data } from '../../types/dataType';
 import { formatBytes, formatWalletAddress, positionIndicator } from '@utils';
-import WalletContext from '@contexts/wallet_address';
 
 const displayChangeInPercentage = (change: number): JSX.Element => {
 	const Arrow = () => {
@@ -27,8 +24,6 @@ const displayChangeInPercentage = (change: number): JSX.Element => {
 };
 
 const Rank = ({ data }: { data: Data }): JSX.Element => {
-	const [walletAddress] = useContext(WalletContext);
-
 	const rankWallets = Object.keys(data.ranks.daily.groupEffortRewards);
 	const wallets = data.wallets;
 
