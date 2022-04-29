@@ -10,7 +10,7 @@ import { FooterWrapper, LastUpdated, Share } from '@components/footer/footer.sty
 
 const Footer = ({ lastUpdated }: { lastUpdated: number }): JSX.Element => {
 	const currentDate = new Date();
-	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs(lastUpdated));
+	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs.unix(lastUpdated));
 
 	return (
 		<FooterWrapper>

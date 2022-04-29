@@ -48,7 +48,7 @@ const Home: NextPage = (): JSX.Element => (
 			<Page>
 				<Header />
 				<Main data={mock} />
-				<Footer lastUpdated={1651001300883} />
+				<Footer lastUpdated={mock.timestamp} />
 			</Page>
 		</Background>
 	</WalletContextProvider>
