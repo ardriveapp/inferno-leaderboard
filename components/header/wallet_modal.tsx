@@ -73,7 +73,12 @@ const WalletModal = ({
 				</ModalButton>
 				{isArconnectAvailable ? (
 					<ModalButton onClick={() => connectToArconnect()}>
-						<img alt='ArConnect Logo' src='/arconnect.png' width={22} height={22} />
+						<img
+							alt='ArConnect Logo'
+							src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/arconnect.png`}
+							width={22}
+							height={22}
+						/>
 						<span style={{ marginLeft: '16px' }}>ArConnect</span>
 					</ModalButton>
 				) : null}

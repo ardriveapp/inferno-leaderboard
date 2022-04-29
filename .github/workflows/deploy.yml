@@ -3,6 +3,8 @@ on: push
 jobs:
   publish:
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_BASE_PATH: /inferno-leaderboard
     steps:
       - uses: actions/checkout@v3
       - name: Set NodeJS version
@@ -18,11 +20,14 @@ jobs:
       - name: Setup dependencies
         run: yarn install --immutable --check-cache
 
-      - name: Build and export
-        run: yarn build && yarn export
+      - name: Build
+        run: yarn build
+
+      - name: Export
+        run: yarn export
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          publish_dir: ./out
