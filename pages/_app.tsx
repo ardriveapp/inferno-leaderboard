@@ -1,5 +1,4 @@
 import 'modern-normalize/modern-normalize.css';
-import './global_style.css';
 import type { AppProps, NextWebVitalsMetric } from 'next/app';
 
 function MyApp({ Component, pageProps }: AppProps) {

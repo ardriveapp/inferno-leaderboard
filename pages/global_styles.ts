@@ -1,6 +1,10 @@
+import { createGlobalStyle } from 'styled-components';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
+export default createGlobalStyle`
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-28Thin.woff2') format('woff2'), url('/fonts/Wavehaus-28Thin.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-28Thin.woff2') format('woff2'), url('${basePath}/fonts/Wavehaus-28Thin.woff') format('woff');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
@@ -8,7 +12,7 @@
 
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-42Light.woff2') format('woff2'), url('/fonts/Wavehaus-42Light.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-42Light.woff2') format('woff2'), url('${basePath}/fonts/Wavehaus-42Light.woff') format('woff');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
@@ -16,7 +20,7 @@
 
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-66Book.woff2') format('woff2'), url('/fonts/Wavehaus-66Book.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-66Book.woff2') format('woff2'), url('${basePath}/fonts/Wavehaus-66Book.woff') format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -24,7 +28,7 @@
 
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-95SemiBold.woff2') format('woff2'), url('/fonts/Wavehaus-95SemiBold.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-95SemiBold.woff2') format('woff2'), url('${basePath}/fonts/Wavehaus-95SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -32,7 +36,7 @@
 
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-128Bold.woff2') format('woff2'), url('/fonts/Wavehaus-128Bold.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-128Bold.woff2') format('woff2'), url('${basePath}/fonts/Wavehaus-128Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -40,15 +44,15 @@
 
 @font-face {
   font-family: 'Wavehaus';
-  src: url('/fonts/Wavehaus-158ExtraBold.woff2') format('woff2'),
-    url('/fonts/Wavehaus-158ExtraBold.woff') format('woff');
+  src: url('${basePath}/fonts/Wavehaus-158ExtraBold.woff2') format('woff2'),
+    url('${basePath}/fonts/Wavehaus-158ExtraBold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 
 body {
-  font-family: Wavehaus, system-ui, -apple-system, /* Firefox supports this but not yet `system-ui` */ 'Segoe UI',
+  font-family: Wavehaus, system-ui, -apple-system, 'Segoe UI',
     Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
   color: #fafafa;
 }
@@ -83,3 +87,4 @@ body {
     transform: translate(-50%, -50%);
   }
 }
+`;
