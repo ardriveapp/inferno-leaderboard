@@ -142,8 +142,8 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 			timeFrame: 'weekly',
 		});
 
-		setStats({
-			...stats,
+		setStats((prevStats) => ({
+			...prevStats,
 			...{
 				group: {
 					uploaders,
@@ -152,8 +152,8 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 					streakers,
 				},
 			},
-		});
-	}, []);
+		}));
+	}, [data.wallets]);
 
 	// set personal stats
 	useEffect(() => {
@@ -164,17 +164,17 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 				timeFrame: 'weekly',
 			});
 
-			setStats({
-				...stats,
+			setStats((prevStats) => ({
+				...prevStats,
 				personal: {
 					rank,
 					dataUploaded,
 					filesUploaded,
 					daysStreaked,
 				},
-			});
+			}));
 		}
-	}, [walletAddress]);
+	}, [walletAddress, data.wallets]);
 
 	const isMobile = useMedia('(max-width: 768px)', true);
 	const isDesktop = !isMobile;
