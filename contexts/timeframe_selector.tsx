@@ -1,9 +1,9 @@
 import { Dispatch, useState, createContext, SetStateAction, ReactNode } from 'react';
 
 export type TimeframeSelectorOptions = 'weekly' | 'lastWeek' | 'total';
-type TimeframeSelctorContextType = [TimeframeSelectorOptions, Dispatch<SetStateAction<TimeframeSelectorOptions>>];
-const contextDefaultValue: TimeframeSelctorContextType = ['weekly', () => {}];
-const TimeframeContext = createContext<TimeframeSelctorContextType>(contextDefaultValue);
+type TimeframeSelectorContextType = [TimeframeSelectorOptions, Dispatch<SetStateAction<TimeframeSelectorOptions>>];
+const contextDefaultValue: TimeframeSelectorContextType = ['weekly', () => {}];
+const TimeframeContext = createContext<TimeframeSelectorContextType>(contextDefaultValue);
 
 export const TimeframeContextProvider = ({ children }: { children: ReactNode }) => {
 	const [timeframe, setTimeframe] = useState<TimeframeSelectorOptions>('weekly');
