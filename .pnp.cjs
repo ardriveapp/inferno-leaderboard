@@ -52,6 +52,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["modern-normalize", "npm:1.1.0"],\
             ["next", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:12.1.5"],\
             ["prettier", "npm:2.6.2"],\
+            ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.0.0"],\
             ["react-dom", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:18.0.0"],\
             ["react-is", "npm:18.0.0"],\
@@ -3927,6 +3928,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["filter-obj", [\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/filter-obj-npm-1.1.0-84128fc26d-cf2104a7c4.zip/node_modules/filter-obj/",\
+          "packageDependencies": [\
+            ["filter-obj", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["find-up", [\
         ["npm:2.1.0", {\
           "packageLocation": "./.yarn/cache/find-up-npm-2.1.0-9f6cb1765c-43284fe4da.zip/node_modules/find-up/",\
@@ -4491,6 +4501,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["modern-normalize", "npm:1.1.0"],\
             ["next", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:12.1.5"],\
             ["prettier", "npm:2.6.2"],\
+            ["query-string", "npm:7.1.1"],\
             ["react", "npm:18.0.0"],\
             ["react-dom", "virtual:00b584573abac986f13e4af921e8d46799ecc0b5c6fdbdba1fe992c23fa235d30e07192a5725ad2958b57821d6c381bed79f0a25c303d5f4b670eb3a81ab2b90#npm:18.0.0"],\
             ["react-is", "npm:18.0.0"],\
@@ -6681,6 +6692,19 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["query-string", [\
+        ["npm:7.1.1", {\
+          "packageLocation": "./.yarn/cache/query-string-npm-7.1.1-55c6f31f52-b227d1f588.zip/node_modules/query-string/",\
+          "packageDependencies": [\
+            ["query-string", "npm:7.1.1"],\
+            ["decode-uri-component", "npm:0.2.0"],\
+            ["filter-obj", "npm:1.1.0"],\
+            ["split-on-first", "npm:1.1.0"],\
+            ["strict-uri-encode", "npm:2.0.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["queue-microtask", [\
         ["npm:1.2.3", {\
           "packageLocation": "./.yarn/cache/queue-microtask-npm-1.2.3-fcc98e4e2d-b676f8c040.zip/node_modules/queue-microtask/",\
@@ -7346,6 +7370,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["split-on-first", [\
+        ["npm:1.1.0", {\
+          "packageLocation": "./.yarn/cache/split-on-first-npm-1.1.0-e2f3ab5e4e-16ff85b54d.zip/node_modules/split-on-first/",\
+          "packageDependencies": [\
+            ["split-on-first", "npm:1.1.0"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["sprintf-js", [\
         ["npm:1.0.3", {\
           "packageLocation": "./.yarn/cache/sprintf-js-npm-1.0.3-73f0a322fa-19d79aec21.zip/node_modules/sprintf-js/",\
@@ -7413,6 +7446,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["error-stack-parser", "npm:2.0.7"],\
             ["stack-generator", "npm:2.0.5"],\
             ["stacktrace-gps", "npm:3.0.4"]\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["strict-uri-encode", [\
+        ["npm:2.0.0", {\
+          "packageLocation": "./.yarn/cache/strict-uri-encode-npm-2.0.0-1ec3189376-eaac4cf978.zip/node_modules/strict-uri-encode/",\
+          "packageDependencies": [\
+            ["strict-uri-encode", "npm:2.0.0"]\
           ],\
           "linkType": "HARD"\
         }]\

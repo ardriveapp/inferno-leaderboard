@@ -37,27 +37,21 @@ export const LastUpdated = styled.div`
 	}
 `;
 
-export const Share = styled.div`
+export const Share = styled.a`
 	display: flex;
 	align-content: center;
 	align-items: center;
 	justify-self: end;
 
-	& > a {
-		margin-right: 0.5rem;
-	}
-
 	& > svg {
 		width: 13px;
+		margin-left: 0.5rem;
 	}
 
 	@media ${device.tablet} {
-		& > a {
-			margin-right: 0.75rem;
-		}
-
 		& > svg {
 			width: 27px;
+			margin-left: 0.75rem;
 		}
 	}
 `;

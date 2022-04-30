@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import queryString from 'query-string';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 // import and enable dayjs relativeTime plugin
@@ -8,18 +10,53 @@ dayjs.extend(relativeTime);
 import { TwitterLogo } from '@components/icons';
 import { FooterWrapper, LastUpdated, Share } from '@components/footer/footer.style';
 
+import WalletContext from '@contexts/wallet_address';
+import StatsContext from '@contexts/stats';
+
+import { formatBytes } from '@utils';
+
 const Footer = ({ lastUpdated }: { lastUpdated: number }): JSX.Element => {
+	const [walletAddress] = useContext(WalletContext);
+	const [stats] = useContext(StatsContext);
+
 	const currentDate = new Date();
 	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs.unix(lastUpdated));
 
+	const personal = {
+		rank: stats.personal.rank,
+		dataUploaded: formatBytes(stats.personal.dataUploaded),
+		filesUploaded: stats.personal.filesUploaded,
+	};
+
+	const group = {
+		dataUploaded: formatBytes(stats.group.dataUploaded),
+		filesUploaded: stats.group.filesUploaded,
+	};
+
+	const tweetText = {
+		personal: `I'm in the @ardriveapp Inferno 🔥! My rank is ${personal.rank} with ${personal.dataUploaded} data uploaded over ${personal.filesUploaded} files. Stop, drop, & upload now! https://app.ardrive.io`,
+		group: `I'm in the @ardriveapp Inferno 🔥! In this reward cycle the group already uploaded ${group.dataUploaded} over ${group.filesUploaded} files.Stop, drop, & upload now! https://app.ardrive.io`,
+	};
+
+	const twitterShareAttributes = {
+		text: walletAddress ? tweetText.personal : tweetText.group,
+		hashtags: 'ArDriveInferno',
+		related: 'ardriveapp',
+		link: 'https://inferno.ardrive.io',
+	};
+
+	const twitterQueryParams = queryString.stringify(twitterShareAttributes);
+
 	return (
 		<FooterWrapper>
-			<a href='#'>Rules</a>
+			<a href='https://ardrive.io/inferno' target='_blank' rel="noreferrer">
+				Rules
+			</a>
 			<LastUpdated>
 				Last updated: <span>{differenceFromLastTimeUpdatedText}</span>
 			</LastUpdated>
-			<Share>
-				<a href='#'>Share</a>
+			<Share href={`https://twitter.com/intent/tweet?${twitterQueryParams}`} target='_blank'>
+				Share
 				<TwitterLogo />
 			</Share>
 		</FooterWrapper>

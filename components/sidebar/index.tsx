@@ -12,6 +12,7 @@ import { Data, Wallets } from '../../types/dataType';
 
 import WalletContext from '@contexts/wallet_address';
 import TimeframeContext from '@contexts/timeframe_selector';
+import StatsContext from '@contexts/stats';
 
 import type { TimeframeSelectorOptions } from '@contexts/timeframe_selector';
 
@@ -127,21 +128,8 @@ const PersonalStats = ({
 const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 	const [walletAddress] = useContext(WalletContext);
 	const [timeframe] = useContext(TimeframeContext);
+	const [stats, setStats] = useContext(StatsContext);
 	const [selected, setSelected] = useState(SelectMode.Group);
-	const [stats, setStats] = useState({
-		group: {
-			uploaders: 0,
-			dataUploaded: 0,
-			filesUploaded: 0,
-			streakers: 0,
-		},
-		personal: {
-			rank: 0,
-			dataUploaded: 0,
-			filesUploaded: 0,
-			daysStreaked: 0,
-		},
-	});
 
 	// set group stats
 	useEffect(() => {
