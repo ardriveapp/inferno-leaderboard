@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
@@ -14,7 +14,8 @@ import { WalletContextProvider } from '@contexts/wallet_address';
 import { TimeframeContextProvider } from '@contexts/timeframe_selector';
 import { StatsContextProvider } from '@contexts/stats';
 
-import mock from '../mocks/output.json';
+import mock from '../mocks/daily_output.json';
+import { Data } from 'types/dataType';
 
 const Background = styled.div`
 	background-image: linear-gradient(
@@ -46,24 +47,21 @@ const Page = styled.div`
 
 Modal.setAppElement('#__next');
 
-const GQLFileIdQuery = `
-{
-	query {
-		transactions(
-			first: 1
-			tags: [
-				{
-					name: "File-Id"
-					values: "9db606be-e614-42fa-a8db-7e502f863d22"
-				}
-			]
-		) {
-			edges {
-				node {
-					id
-					owner {
-						address
-					}
+const GQLQuery = `
+query {
+	transactions(
+		first: 1
+		tags: [{
+			name: "File-Id"
+			values: "9db606be-e614-42fa-a8db-7e502f863d22"
+		}]
+	)
+	{
+		edges {
+			node {
+				id
+				owner {
+					address
 				}
 			}
 		}
@@ -71,24 +69,81 @@ const GQLFileIdQuery = `
 }
 `;
 
-const ownerAddress = '2YCmvIuKh5Z410fWOZVzbS1TlNiWua97wKVWtPlnh';
+const arweaveUrl = 'https://arweave.net';
+const GqlEndpoint = `${arweaveUrl}/graphql`;
+
+const ownerAddress = '2YCmvIuKh5Z410fWOZVzbS1TlNiWua97wKVWtPlnh-8';
+
+type GQLResponseType = {
+	data: {
+		transactions: {
+			edges: [
+				{
+					node: {
+						id: string;
+						owner: {
+							address: string;
+						};
+					};
+				},
+			];
+		};
+	};
+};
+
+const sendGQLQuery = async (): Promise<GQLResponseType> => {
+	const response = await fetch(GqlEndpoint, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ query: GQLQuery }),
+	});
+	return response.json();
+};
+
+const getMetadataTxAndOwner = (gqlResponse: GQLResponseType) => {
+	const responseData = gqlResponse.data.transactions.edges[0].node;
+	const metadataTxId = responseData.id;
+	const owner = responseData.owner.address;
+
+	return {
+		metadataTxId,
+		owner,
+		isRealOwner: owner === ownerAddress,
+	};
+};
+
+const getDataTxId = async (metadataTxId: string): Promise<string> => {
+	const response = await fetch(`${arweaveUrl}/${metadataTxId}`);
+	const metadata = await response.json();
+	return metadata.dataTxId;
+};
+
+const getData = async (dataTxId: string): Promise<Data> => {
+	const response = await fetch(`${arweaveUrl}/${dataTxId}`);
+	return response.json();
+};
 
 const Home: NextPage = (): JSX.Element => {
+	const [data, setData] = useState<Data>();
+
 	useEffect(() => {
-		fetch('https://arweave.net/graphql', {
-			method: 'POST',
-			headers: {
-				'Accept-Encoding': 'gzip, deflate, br',
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-				Connection: 'keep-alive',
-				DNT: '1',
-				Origin: 'https://arweave.net/graphql',
-			},
-			body: new Blob([JSON.stringify(GQLFileIdQuery)], { type: 'application/json' }),
-		})
-			.then((res) => res.json())
-			.then((res) => console.log(res));
+		if (process.env.NODE_ENV === 'production') {
+			(async () => {
+				const gqlResponse = await sendGQLQuery();
+				const { metadataTxId, isRealOwner } = getMetadataTxAndOwner(gqlResponse);
+
+				if (isRealOwner) {
+					const dataTxId = await getDataTxId(metadataTxId);
+
+					const data = await getData(dataTxId);
+					setData(data);
+				}
+			})();
+		} else {
+			setData(mock);
+		}
 	}, []);
 
 	return (
@@ -120,13 +175,15 @@ const Home: NextPage = (): JSX.Element => {
 			<StatsContextProvider>
 				<WalletContextProvider>
 					<TimeframeContextProvider>
-						<Background>
-							<Page>
-								<Header />
-								<Main data={mock} />
-								<Footer lastUpdated={mock.timestamp} />
-							</Page>
-						</Background>
+						{data ? (
+							<Background>
+								<Page>
+									<Header />
+									<Main data={data} />
+									<Footer lastUpdated={data.timestamp} />
+								</Page>
+							</Background>
+						) : null}
 					</TimeframeContextProvider>
 				</WalletContextProvider>
 			</StatsContextProvider>
