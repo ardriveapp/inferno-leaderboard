@@ -53,7 +53,7 @@ query {
 		first: 1
 		tags: [{
 			name: "File-Id"
-			values: "9db606be-e614-42fa-a8db-7e502f863d22"
+			values: "7fa5d4e3-0087-422a-acb3-2e481d98d08b"
 		}]
 	)
 	{
@@ -72,7 +72,7 @@ query {
 const arweaveUrl = 'https://arweave.net';
 const GqlEndpoint = `${arweaveUrl}/graphql`;
 
-const ownerAddress = '2YCmvIuKh5Z410fWOZVzbS1TlNiWua97wKVWtPlnh-8';
+const ownerAddress = 'ZPe6CJ9fqcXZakrV6KQmxOdncfxBOO0v7maNVV0DQGQ';
 
 type GQLResponseType = {
 	data: {
