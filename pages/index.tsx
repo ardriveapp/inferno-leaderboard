@@ -78,17 +78,14 @@ const Home: NextPage = (): JSX.Element => {
 		fetch('https://arweave.net/graphql', {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json',
-			},
-			/* headers: {
 				'Accept-Encoding': 'gzip, deflate, br',
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
 				Connection: 'keep-alive',
 				DNT: '1',
 				Origin: 'https://arweave.net/graphql',
-			}, */
-			body: JSON.stringify(GQLFileIdQuery),
+			},
+			body: new Blob([JSON.stringify(GQLFileIdQuery)], { type: 'application/json' }),
 		})
 			.then((res) => res.json())
 			.then((res) => console.log(res));
