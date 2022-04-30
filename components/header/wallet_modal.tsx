@@ -59,6 +59,7 @@ const WalletModal = ({
 
 		if (isValid) {
 			setWalletAddress(walletAddress);
+			setShowWalletInput(false);
 			closeModal();
 		} else {
 			setImportedPublicWalletAddressError('Arweave wallet is not valid.');
@@ -111,7 +112,10 @@ const WalletModal = ({
 		<ReactModal
 			isOpen={isOpen}
 			contentLabel='Connect Wallet'
-			onRequestClose={() => closeModal()}
+			onRequestClose={() => {
+				closeModal();
+				setShowWalletInput(false);
+			}}
 			className='react-modal-content'
 			overlayClassName='react-modal-overlay'
 		>
