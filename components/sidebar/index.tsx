@@ -141,15 +141,18 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 		setStats((prevStats) => ({
 			...prevStats,
 			...{
-				group: {
-					uploaders,
-					dataUploaded,
-					filesUploaded,
-					streakers,
+				[timeframe]: {
+					personal: prevStats[timeframe].personal,
+					group: {
+						uploaders,
+						dataUploaded,
+						filesUploaded,
+						streakers,
+					},
 				},
 			},
 		}));
-	}, [data.wallets, timeframe]);
+	}, [data.wallets, timeframe, setStats]);
 
 	// set personal stats
 	useEffect(() => {
@@ -162,20 +165,28 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 
 			setStats((prevStats) => ({
 				...prevStats,
-				personal: {
-					rank,
-					dataUploaded,
-					filesUploaded,
-					daysStreaked,
+				...{
+					[timeframe]: {
+						group: prevStats[timeframe].group,
+						personal: {
+							rank,
+							dataUploaded,
+							filesUploaded,
+							daysStreaked,
+						},
+					},
 				},
 			}));
 		}
-	}, [walletAddress, data.wallets, timeframe]);
+	}, [walletAddress, data.wallets, timeframe, setStats]);
 
 	const isMobile = useMedia('(max-width: 768px)', true);
 	const isDesktop = !isMobile;
 	const hasWallet = Boolean(walletAddress);
 	const personalStatsSelected = selected === SelectMode.Personal;
+
+	const groupStats = stats[timeframe].group;
+	const personalStats = stats[timeframe].personal;
 
 	return (
 		<SidebarWrapper>
@@ -205,14 +216,14 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 				</SelectorWrapper>
 			)}
 
-			{isMobile && <Box text={formatBytes(stats.group.dataUploaded)} description='Group Data' />}
+			{isMobile && <Box text={formatBytes(groupStats.dataUploaded)} description='Group Data' />}
 
 			{hasWallet && isMobile && (
 				<StatsMobileSecondRow>
 					<PersonalStats
-						rank={stats.personal.rank}
-						dataUploaded={stats.personal.dataUploaded}
-						daysStreaked={stats.personal.daysStreaked}
+						rank={personalStats.rank}
+						dataUploaded={personalStats.dataUploaded}
+						daysStreaked={personalStats.daysStreaked}
 						isMobile={isMobile}
 					/>
 				</StatsMobileSecondRow>
@@ -220,20 +231,20 @@ const Sidebar = ({ data }: { data: Data }): JSX.Element => {
 
 			{personalStatsSelected && isDesktop && (
 				<PersonalStats
-					rank={stats.personal.rank}
-					dataUploaded={stats.personal.dataUploaded}
-					filesUploaded={stats.personal.filesUploaded}
-					daysStreaked={stats.personal.daysStreaked}
+					rank={personalStats.rank}
+					dataUploaded={personalStats.dataUploaded}
+					filesUploaded={personalStats.filesUploaded}
+					daysStreaked={personalStats.daysStreaked}
 					isMobile={isMobile}
 				/>
 			)}
 
 			{!personalStatsSelected && isDesktop && (
 				<GroupStats
-					uploaders={stats.group.uploaders}
-					dataUploaded={stats.group.dataUploaded}
-					filesUploaded={stats.group.filesUploaded}
-					streakers={stats.group.streakers}
+					uploaders={groupStats.uploaders}
+					dataUploaded={groupStats.dataUploaded}
+					filesUploaded={groupStats.filesUploaded}
+					streakers={groupStats.streakers}
 				/>
 			)}
 		</SidebarWrapper>

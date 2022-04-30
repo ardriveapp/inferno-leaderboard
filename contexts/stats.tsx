@@ -1,32 +1,92 @@
 import { Dispatch, useState, createContext, SetStateAction, ReactNode } from 'react';
 
 export type StatsProps = {
-	group: {
-		uploaders: number;
-		dataUploaded: number;
-		filesUploaded: number;
-		streakers: number;
+	weekly: {
+		group: {
+			uploaders: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			streakers: number;
+		};
+		personal: {
+			rank: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			daysStreaked: number;
+		};
 	};
-	personal: {
-		rank: number;
-		dataUploaded: number;
-		filesUploaded: number;
-		daysStreaked: number;
+	lastWeek: {
+		group: {
+			uploaders: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			streakers: number;
+		};
+		personal: {
+			rank: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			daysStreaked: number;
+		};
+	};
+	total: {
+		group: {
+			uploaders: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			streakers: number;
+		};
+		personal: {
+			rank: number;
+			dataUploaded: number;
+			filesUploaded: number;
+			daysStreaked: number;
+		};
 	};
 };
 
 const defaultValue = {
-	group: {
-		uploaders: 0,
-		dataUploaded: 0,
-		filesUploaded: 0,
-		streakers: 0,
+	weekly: {
+		group: {
+			uploaders: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			streakers: 0,
+		},
+		personal: {
+			rank: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			daysStreaked: 0,
+		},
 	},
-	personal: {
-		rank: 0,
-		dataUploaded: 0,
-		filesUploaded: 0,
-		daysStreaked: 0,
+	lastWeek: {
+		group: {
+			uploaders: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			streakers: 0,
+		},
+		personal: {
+			rank: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			daysStreaked: 0,
+		},
+	},
+	total: {
+		group: {
+			uploaders: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			streakers: 0,
+		},
+		personal: {
+			rank: 0,
+			dataUploaded: 0,
+			filesUploaded: 0,
+			daysStreaked: 0,
+		},
 	},
 };
 

@@ -23,23 +23,34 @@ const Footer = ({ lastUpdated }: { lastUpdated: number }): JSX.Element => {
 	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs.unix(lastUpdated));
 
 	const personal = {
-		rank: stats.personal.rank,
-		dataUploaded: formatBytes(stats.personal.dataUploaded),
-		filesUploaded: stats.personal.filesUploaded,
+		rank: stats.weekly.personal.rank,
+		dataUploaded: formatBytes(stats.weekly.personal.dataUploaded),
+		filesUploaded: stats.weekly.personal.filesUploaded,
 	};
 
 	const group = {
-		dataUploaded: formatBytes(stats.group.dataUploaded),
-		filesUploaded: stats.group.filesUploaded,
+		dataUploaded: formatBytes(stats.weekly.group.dataUploaded),
+		filesUploaded: stats.weekly.group.filesUploaded,
 	};
 
-	const tweetText = {
-		personal: `I'm in the @ardriveapp Inferno 🔥! My rank is ${personal.rank} with ${personal.dataUploaded} data uploaded over ${personal.filesUploaded} files. Stop, drop, & upload now! https://app.ardrive.io`,
-		group: `I'm in the @ardriveapp Inferno 🔥! In this reward cycle the group already uploaded ${group.dataUploaded} over ${group.filesUploaded} files.Stop, drop, & upload now! https://app.ardrive.io`,
-	};
+	const personalUnrankedText = `I'm in the @ardriveapp Inferno 🔥! I uploaded ${personal.dataUploaded} over ${personal.filesUploaded} files. Stop, drop, & upload now! https://app.ardrive.io`;
+	const personalText = `I'm in the @ardriveapp Inferno 🔥! My rank is ${personal.rank} with ${personal.dataUploaded} data uploaded over ${personal.filesUploaded} files. Stop, drop, & upload now! https://app.ardrive.io`;
+	const groupText = `I'm in the @ardriveapp Inferno 🔥! In this reward cycle the group already uploaded ${group.dataUploaded} over ${group.filesUploaded} files.Stop, drop, & upload now! https://app.ardrive.io`;
+
+	const finalText = (() => {
+		if (walletAddress) {
+			if (personal.rank !== 0) {
+				return personalText;
+			}
+
+			return personalUnrankedText;
+		}
+
+		return groupText;
+	})();
 
 	const twitterShareAttributes = {
-		text: walletAddress ? tweetText.personal : tweetText.group,
+		text: finalText,
 		hashtags: 'ArDriveInferno',
 		related: 'ardriveapp',
 		link: 'https://inferno.ardrive.io',
@@ -49,7 +60,7 @@ const Footer = ({ lastUpdated }: { lastUpdated: number }): JSX.Element => {
 
 	return (
 		<FooterWrapper>
-			<a href='https://ardrive.io/inferno' target='_blank' rel="noreferrer">
+			<a href='https://ardrive.io/inferno' target='_blank' rel='noreferrer'>
 				Rules
 			</a>
 			<LastUpdated>
