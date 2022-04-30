@@ -16,7 +16,8 @@
 		"postinstall": "husky install",
 		"start": "next start",
 		"test": "jest --watch",
-		"test:ci": "jest"
+		"test:ci": "jest",
+		"export": "next export"
 	},
 	"dependencies": {
 		"dayjs": "^1.11.1",
