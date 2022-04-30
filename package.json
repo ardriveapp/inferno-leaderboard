@@ -45,6 +45,7 @@
 		"lint-staged": ">=10",
 		"modern-normalize": "^1.1.0",
 		"prettier": "^2.6.2",
+		"query-string": "^7.1.1",
 		"react-use": "^17.3.2",
 		"typescript": "4.6.3"
 	},

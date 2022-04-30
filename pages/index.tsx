@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import type { NextPage } from 'next';
 import styled from 'styled-components';
 import Modal from 'react-modal';
@@ -10,6 +11,7 @@ import { device } from '@utils';
 
 import { WalletContextProvider } from '@contexts/wallet_address';
 import { TimeframeContextProvider } from '@contexts/timeframe_selector';
+import { StatsContextProvider } from '@contexts/stats';
 
 import mock from '../mocks/output.json';
 
@@ -44,17 +46,45 @@ const Page = styled.div`
 Modal.setAppElement('#__next');
 
 const Home: NextPage = (): JSX.Element => (
-	<WalletContextProvider>
-		<TimeframeContextProvider>
-			<Background>
-				<Page>
-					<Header />
-					<Main data={mock} />
-					<Footer lastUpdated={mock.timestamp} />
-				</Page>
-			</Background>
-		</TimeframeContextProvider>
-	</WalletContextProvider>
+	<>
+		<Head>
+			<title>Inferno</title>
+			<meta
+				name='description'
+				content="We're awarding up to 50,000 ArDrive Tokens in our third Usage Mining Rewards program called Inferno."
+			/>
+			<meta property='og:locale' content='en_US' />
+			<meta property='og:type' content='article' />
+			<meta property='og:title' content='Inferno' />
+			<meta
+				property='og:description'
+				content="We're awarding up to 50,000 ArDrive Tokens in our third Usage Mining Rewards program called Inferno."
+			/>
+			<meta property='og:url' content='https://ardrive.io/inferno/' />
+			<meta property='og:site_name' content='ArDrive' />
+			<meta property='og:image' content='https://ardrive.io/wp-content/uploads/2022/03/Inferno-Mobile.jpg' />
+			<meta property='og:image:width' content='1800' />
+			<meta property='og:image:height' content='1013' />
+			<meta property='og:image:type' content='image/jpeg' />
+			<meta name='twitter:card' content='summary_large_image' />
+			<meta name='twitter:title' content='Inferno' />
+			<meta name='twitter:label1' content='Est. reading time' />
+			<meta name='twitter:data1' content='2 minutes' />
+		</Head>
+		<StatsContextProvider>
+			<WalletContextProvider>
+				<TimeframeContextProvider>
+					<Background>
+						<Page>
+							<Header />
+							<Main data={mock} />
+							<Footer lastUpdated={mock.timestamp} />
+						</Page>
+					</Background>
+				</TimeframeContextProvider>
+			</WalletContextProvider>
+		</StatsContextProvider>
+	</>
 );
 
 export default Home;
