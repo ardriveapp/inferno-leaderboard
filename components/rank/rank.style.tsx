@@ -69,5 +69,10 @@ export const RankWrapper = styled.div`
 			padding-bottom: 1rem;
 			margin-bottom: 1rem;
 		}
+
+		& a {
+			text-decoration: none;
+			color: #fafafa;
+		}
 	}
 `;

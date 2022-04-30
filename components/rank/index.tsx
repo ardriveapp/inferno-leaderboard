@@ -46,7 +46,11 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 			return (
 				<tr key={position}>
 					<td>
-						<span>{formatWalletAddress(address)}</span>
+						<span>
+							<a href={`https://viewblock.io/arweave/address/${address}`} target='_blank' rel="noreferrer">
+								{formatWalletAddress(address)}
+							</a>
+						</span>
 					</td>
 					<td>
 						<span>{positionIndicator(position)}</span>
