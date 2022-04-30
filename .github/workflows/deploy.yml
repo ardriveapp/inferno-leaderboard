@@ -1,10 +1,12 @@
-name: PR
+name: Publish
+
 on:
-  pull_request:
-    branches-ignore:
+  push:
+    branches:
       - main
+
 jobs:
-  test-and-build:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -21,11 +23,14 @@ jobs:
       - name: Setup dependencies
         run: yarn install --immutable --check-cache
 
-      - name: Lint
-        run: yarn lint
-
       - name: Build
         run: yarn build
 
-      - name: Test
-        run: yarn test:ci
+      - name: Export
+        run: yarn export
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
