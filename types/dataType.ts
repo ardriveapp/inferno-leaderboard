@@ -18,10 +18,15 @@ type Wallets = {
 	};
 };
 
+type RankInformation = {
+	address: string;
+	rewards: number;
+};
+
 type Ranks = {
 	hasReachedMinimumGroupEffort: boolean;
-	groupEffortRewards: { [wallet: string]: number };
-	streakRewards: { [wallet: string]: number };
+	groupEffortRewards: RankInformation[];
+	streakRewards: RankInformation[];
 };
 
 type RanksTotal = Omit<Ranks, 'hasReachedMinimumGroupEffort'>;
