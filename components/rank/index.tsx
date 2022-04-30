@@ -29,16 +29,17 @@ const displayChangeInPercentage = (change: number): JSX.Element => {
 
 const Rank = ({ data }: { data: Data }): JSX.Element => {
 	const [timeframe] = useContext(TimeframeContext);
-	const rank = Object.keys(data.ranks[timeframe].groupEffortRewards);
+	const rankWallets = data.ranks[timeframe].groupEffortRewards;
 	const wallets = data.wallets;
 
 	const createRows = () =>
-		rank.map((address, index) => {
+		rankWallets.map((wallet, index) => {
 			const position = index + 1;
-			const wallet = wallets[address];
-			const walletStats = wallet[timeframe];
-			const walletDaily = wallet?.daily;
-			const walletLastWeek = wallet?.lastWeek;
+			const walletAddress = wallet.address;
+			const walletInfo = wallets[walletAddress];
+			const walletStats = walletInfo[timeframe];
+			const walletDaily = walletInfo?.daily;
+			const walletLastWeek = walletInfo?.lastWeek;
 			const byteSize = formatBytes(walletStats?.byteCount || 0);
 			const changeInPercentage7d = displayChangeInPercentage(walletDaily?.changeInPercentage || 0);
 			const changeInPercentage24h = displayChangeInPercentage(walletLastWeek?.changeInPercentage || 0);
@@ -47,8 +48,12 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 				<tr key={position}>
 					<td>
 						<span>
-							<a href={`https://viewblock.io/arweave/address/${address}`} target='_blank' rel="noreferrer">
-								{formatWalletAddress(address)}
+							<a
+								href={`https://viewblock.io/arweave/address/${walletAddress}`}
+								target='_blank'
+								rel='noreferrer'
+							>
+								{formatWalletAddress(walletAddress)}
 							</a>
 						</span>
 					</td>
