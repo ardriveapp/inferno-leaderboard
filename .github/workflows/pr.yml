@@ -1,8 +1,5 @@
 name: PR
-on:
-  pull_request:
-    branches-ignore:
-      - main
+on: pull_request
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
