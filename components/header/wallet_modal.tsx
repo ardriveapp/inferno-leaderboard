@@ -20,7 +20,7 @@ const WalletModal = ({
 	setWalletAddress,
 }: {
 	isOpen: boolean;
-	closeModal: Function;
+	closeModal: () => void;
 	setWalletAddress: Dispatch<SetStateAction<string>>;
 }): JSX.Element => {
 	const [isArconnectAvailable, setIsArconnectAvailable] = useState(false);
@@ -51,13 +51,15 @@ const WalletModal = ({
 
 	const onImportWalletSubmit = (e: FormEvent<HTMLFormElement>) => {
 		const data = new FormData(e.target as HTMLFormElement);
-		const walletAddress = data.get('wallet') ? String(data.get('wallet')) : '';
+		const walletData: unknown | undefined = data.get('wallet');
+		const walletAddress = walletData ? String(walletData) : '';
 		setImportedPublicWalletAddress(walletAddress);
 
 		const isValid = validateWalletAddress(walletAddress);
 
 		if (isValid) {
 			setWalletAddress(walletAddress);
+			setShowWalletInput(false);
 			closeModal();
 		} else {
 			setImportedPublicWalletAddressError('Arweave wallet is not valid.');
@@ -115,7 +117,10 @@ const WalletModal = ({
 		<ReactModal
 			isOpen={isOpen}
 			contentLabel='Connect Wallet'
-			onRequestClose={() => closeModal()}
+			onRequestClose={() => {
+				closeModal();
+				setShowWalletInput(false);
+			}}
 			className='react-modal-content'
 			overlayClassName='react-modal-overlay'
 		>

@@ -29,7 +29,6 @@ const MainWrapper = styled.main<MainWrapperProps>`
 const RankWrapper = styled.section`
 	order: 1;
 	min-height: 0;
-	overflow-y: scroll;
 	background: #121212;
 
 	@media ${device.tablet} {

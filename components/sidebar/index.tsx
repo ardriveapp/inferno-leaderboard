@@ -63,12 +63,12 @@ const getGroupStats = ({
 	return walletValues.reduce(
 		(accumulator, stats) => {
 			const { byteCount, fileCount } = stats[timeFrame];
-			const didUploaded = byteCount > 0;
+			const didUpload = byteCount > 0;
 
 			return {
 				dataUploaded: accumulator.dataUploaded + byteCount,
 				filesUploaded: accumulator.filesUploaded + fileCount,
-				uploaders: didUploaded ? accumulator.uploaders + 1 : accumulator.uploaders,
+				uploaders: didUpload ? accumulator.uploaders + 1 : accumulator.uploaders,
 				streakers: accumulator.streakers,
 			};
 		},
