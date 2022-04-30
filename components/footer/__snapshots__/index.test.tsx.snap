@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer renders last updated 1`] = `
+<div>
+  <footer
+    class="sc-bczRLJ dcLlNR"
+  >
+    <a
+      href="https://ardrive.io/inferno"
+      rel="noreferrer"
+      target="_blank"
+    >
+      Rules
+    </a>
+    <div
+      class="sc-gsnTZi diJNQx"
+    >
+      Last updated: 
+      <span>
+        30 minutes ago
+      </span>
+    </div>
+    <a
+      class="sc-dkzDqf lmpBUx"
+      href="https://twitter.com/intent/tweet?hashtags=ArDriveInferno&link=https%3A%2F%2Finferno.ardrive.io&related=ardriveapp&text=I%27m%20in%20the%20%40ardriveapp%20Inferno%20%F0%9F%94%A5%21%20In%20this%20reward%20cycle%20the%20group%20already%20uploaded%200%20Bytes%20over%200%20files.Stop%2C%20drop%2C%20%26%20upload%20now%21%20https%3A%2F%2Fapp.ardrive.io"
+      target="_blank"
+    >
+      Share
+      <svg
+        fill="none"
+        height="22"
+        viewBox="0 0 27 22"
+        width="27"
+      >
+        <title>
+          Twitter
+        </title>
+        <path
+          d="M24.2247 5.48279C24.2418 5.72341 24.2418 5.96407 24.2418 6.20469C24.2418 13.5437 18.6739 22 8.49749 22C5.36232 22 2.44989 21.089 0 19.5078C0.445449 19.5594 0.873707 19.5766 1.33629 19.5766C3.92319 19.5766 6.30458 18.7 8.20624 17.2047C5.77349 17.1531 3.73477 15.5547 3.03234 13.3547C3.37501 13.4062 3.71763 13.4406 4.07744 13.4406C4.57425 13.4406 5.07112 13.3718 5.53365 13.2516C2.99812 12.7359 1.0964 10.5016 1.0964 7.80312V7.73439C1.83305 8.14689 2.68973 8.4047 3.59766 8.43904C2.10717 7.44214 1.13068 5.7406 1.13068 3.81559C1.13068 2.78436 1.40474 1.83904 1.88447 1.01404C4.60847 4.38278 8.70305 6.58275 13.2944 6.82341C13.2087 6.41091 13.1573 5.98127 13.1573 5.55157C13.1573 2.49216 15.6244 0 18.691 0C20.2843 0 21.7233 0.670311 22.7341 1.75312C23.9847 1.51251 25.184 1.04843 26.2462 0.412503C25.835 1.70159 24.9613 2.78441 23.8135 3.47186C24.9271 3.35161 26.0064 3.04216 27 2.61252C26.2463 3.71247 25.304 4.69212 24.2247 5.48279Z"
+          fill="#FAFAFA"
+        />
+      </svg>
+    </a>
+  </footer>
+</div>
+`;

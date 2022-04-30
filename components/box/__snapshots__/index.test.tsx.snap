@@ -1,0 +1,98 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Box renders a text and description with arrow down 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ bTmIMl"
+  >
+    <div
+      class="sc-gsnTZi igGEIT"
+    >
+      Testing
+    </div>
+    <div
+      class="sc-dkzDqf hZeSBa"
+    >
+      <span
+        class="sc-hKMtZM bvGUNh"
+      >
+        box
+      </span>
+      <svg
+        fill="none"
+        height="9"
+        viewBox="0 0 13 10"
+        width="12"
+      >
+        <title>
+          Down
+        </title>
+        <path
+          d="M12.4992 1.1625C12.5055 1.02308 12.4726 0.88144 12.4009 0.756493V0.755589C12.2566 0.505572 11.9852 0.357422 11.6968 0.357422L1.30261 0.357422C1.01429 0.357422 0.74277 0.505482 0.598424 0.755589H0.598527V0.756493C0.455297 1.00641 0.469001 1.3208 0.634593 1.55807H0.633665C1.69078 3.07493 4.85827 7.61877 5.83087 9.0138C5.98275 9.23207 6.23439 9.35742 6.49981 9.35742C6.76524 9.35742 7.01697 9.23196 7.16876 9.0138C8.14128 7.61836 11.3087 3.07473 12.366 1.55807H12.365C12.4479 1.43944 12.4931 1.30203 12.4994 1.1625H12.4992Z"
+          fill="#FE0230"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Box renders a text and description with arrow up 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ bTmIMl"
+  >
+    <div
+      class="sc-gsnTZi igGEIT"
+    >
+      Testing
+    </div>
+    <div
+      class="sc-dkzDqf hZeSBa"
+    >
+      <span
+        class="sc-hKMtZM bvGUNh"
+      >
+        box
+      </span>
+      <svg
+        fill="none"
+        height="9"
+        viewBox="0 0 12 10"
+        width="12"
+      >
+        <title>
+          Up
+        </title>
+        <path
+          d="M0.00075509 8.69492C-0.00553051 8.83434 0.0274428 8.97598 0.0990593 9.10093V9.10183C0.243424 9.35185 0.514846 9.5 0.803248 9.5H11.1974C11.4857 9.5 11.7572 9.35194 11.9016 9.10183H11.9015V9.10093C12.0447 8.85101 12.031 8.53662 11.8654 8.29935H11.8663C10.8092 6.78249 7.64173 2.23865 6.66913 0.843626C6.51725 0.625352 6.26561 0.5 6.00019 0.5C5.73476 0.5 5.48303 0.62546 5.33124 0.843626C4.35872 2.23906 1.19131 6.7827 0.134039 8.29935H0.134967C0.0521205 8.41798 0.0068831 8.55539 0.000596974 8.69492H0.00075509Z"
+          fill="#7ED321"
+        />
+      </svg>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Box renders a text and description without arrow 1`] = `
+<div>
+  <div
+    class="sc-bczRLJ bTmIMl"
+  >
+    <div
+      class="sc-gsnTZi igGEIT"
+    >
+      Testing
+    </div>
+    <div
+      class="sc-dkzDqf hZeSBa"
+    >
+      <span
+        class="sc-hKMtZM eDrioj"
+      >
+        box
+      </span>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,36 @@
+name: Publish
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set NodeJS version
+        id: node_version
+        run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+
+      - name: Set Up NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ steps.node_version.outputs.NODE_VERSION }}
+          cache: "yarn"
+
+      - name: Setup dependencies
+        run: yarn install --immutable --check-cache
+
+      - name: Build
+        run: yarn build
+
+      - name: Export
+        run: yarn export
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
