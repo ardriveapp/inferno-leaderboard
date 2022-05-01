@@ -1,4 +1,7 @@
 import { useEffect, useState } from 'react';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+dayjs.extend(utc);
 
 import Box from '@components/box';
 
@@ -6,12 +9,12 @@ const getTargetDate = (): Date => {
 	// Get current date
 	const now = new Date();
 
-	// Set current date to 00:00:00
+	// Set current date to 04:00:00 (UTC)
 	const today = new Date(now);
 	today.setMilliseconds(0);
 	today.setSeconds(0);
 	today.setMinutes(0);
-	today.setHours(0);
+	today.setHours(4);
 
 	// Start next Sunday date
 	const nextSunday = new Date(today);
@@ -21,9 +24,9 @@ const getTargetDate = (): Date => {
 		nextSunday.setDate(nextSunday.getDate() + 1);
 	} while (nextSunday.getDay() !== sundayNumber);
 
-	const timezone = 'America/New_York';
+	const cycleUTCTime = dayjs(nextSunday).utc(true);
 
-	return new Date(nextSunday.toLocaleString('en-US', { timeZone: timezone }));
+	return cycleUTCTime.toDate();
 };
 
 const oneSecond = 1000;
