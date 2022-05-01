@@ -1,4 +1,8 @@
 export const positionIndicator = (position: number): string => {
+	if (position === 0) {
+		return '-';
+	}
+
 	const indicator = Math.abs(position);
 	const cent = indicator % 100;
 

@@ -21,6 +21,7 @@ type Wallets = {
 type RankInformation = {
 	address: string;
 	rewards: number;
+	rankPosition: number;
 };
 
 type Ranks = {

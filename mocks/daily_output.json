@@ -1321,19 +1321,23 @@
 			"groupEffortRewards": [
 				{
 					"address": "zy9RK0Nts08shS0Fy506DzF9TX6XJ7oIePsNUG82DLE",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 1
 				},
 				{
 					"address": "peFURnJVIrHJjekUXXEdFmqO707U19x5DnFsBnTeyNs",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 2
 				},
 				{
 					"address": "uOtFVsSFtIRGpw__uoo3BDHGXazi2l_ztTz0mD98ZCg",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 0
 				},
 				{
 					"address": "7_maL6zeEHtH3m6lamDj9uHEC8vOX49rADoQPd3O7uM",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 0
 				}
 			],
 			"streakRewards": []
@@ -1343,19 +1347,23 @@
 			"groupEffortRewards": [
 				{
 					"address": "zy9RK0Nts08shS0Fy506DzF9TX6XJ7oIePsNUG82DLE",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 1
 				},
 				{
 					"address": "peFURnJVIrHJjekUXXEdFmqO707U19x5DnFsBnTeyNs",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 2
 				},
 				{
 					"address": "uOtFVsSFtIRGpw__uoo3BDHGXazi2l_ztTz0mD98ZCg",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 3
 				},
 				{
 					"address": "7_maL6zeEHtH3m6lamDj9uHEC8vOX49rADoQPd3O7uM",
-					"rewards": 0
+					"rewards": 0,
+					"rankPosition": 4
 				}
 			],
 			"streakRewards": []
