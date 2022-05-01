@@ -8,7 +8,9 @@ import { formatBytes, formatWalletAddress, positionIndicator } from '@utils';
 
 import TimeframeContext from '@contexts/timeframe_selector';
 
-const displayChangeInPercentage = (change: number): JSX.Element => {
+const displayChangeInPercentage = (change: number): JSX.Element | string => {
+	if (change === 0) return '-';
+
 	const Arrow = () => {
 		if (change > 0) {
 			return <ArrowUp />;
@@ -33,8 +35,8 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 	const wallets = data.wallets;
 
 	const createRows = () =>
-		rankWallets.map((wallet, index) => {
-			const position = index + 1;
+		rankWallets.map((wallet) => {
+			const position = wallet.rankPosition;
 			const walletAddress = wallet.address;
 			const walletInfo = wallets[walletAddress];
 			const walletStats = walletInfo[timeframe];

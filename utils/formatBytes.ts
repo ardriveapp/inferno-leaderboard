@@ -1,4 +1,5 @@
 export const formatBytes = (bytes: number): string => {
+	if (bytes === 0) return '-';
 	const marker = 1024; // Change to 1000 if required
 	const decimal = 3; // Change as required
 	const kiloBytes = marker; // One Kilobyte is 1024 bytes

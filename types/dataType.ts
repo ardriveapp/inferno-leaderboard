@@ -21,6 +21,7 @@ type Wallets = {
 type RankInformation = {
 	address: string;
 	rewards: number;
+	rankPosition: number;
 };
 
 type Ranks = {
@@ -34,6 +35,7 @@ type RanksTotal = Omit<Ranks, 'hasReachedMinimumGroupEffort'>;
 type Data = {
 	blockHeight: number;
 	timestamp: number;
+	lastUpdated: number;
 	PSTHolders: { [wallet: string]: number };
 	wallets: Wallets;
 	ranks: {
