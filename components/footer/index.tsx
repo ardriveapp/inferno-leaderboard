@@ -20,7 +20,7 @@ const Footer = ({ lastUpdated }: { lastUpdated: number }): JSX.Element => {
 	const [stats] = useContext(StatsContext);
 
 	const currentDate = new Date();
-	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs.unix(lastUpdated));
+	const differenceFromLastTimeUpdatedText = dayjs(currentDate).to(dayjs(lastUpdated));
 
 	const personal = {
 		rank: stats.weekly.personal.rank,

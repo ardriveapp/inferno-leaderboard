@@ -180,7 +180,7 @@ const Home: NextPage = (): JSX.Element => {
 								<Page>
 									<Header />
 									<Main data={data} />
-									<Footer lastUpdated={data.timestamp} />
+									<Footer lastUpdated={data.lastUpdated} />
 								</Page>
 							</Background>
 						) : null}
