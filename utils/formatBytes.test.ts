@@ -4,7 +4,7 @@ describe('The formatBytes function ', () => {
 	describe('returns the properly formatted byte count description ', () => {
 		const inputToExpectedOutputMap = new Map<number, string>([
 			// Bytes range 0-1023
-			[0, '0 Bytes'],
+			[0, '-'],
 			[1023, '1023 Bytes'],
 			// KB range 1024-1048575
 			[1024, '1.000 KB'],
