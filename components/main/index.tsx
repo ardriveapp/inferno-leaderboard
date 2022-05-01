@@ -17,7 +17,7 @@ type MainWrapperProps = {
 const MainWrapper = styled.main<MainWrapperProps>`
 	margin-top: 1.375rem;
 	display: grid;
-	grid-template-rows: ${({ hasWallet }) => (hasWallet ? 'calc(186px + 1.25rem) 1fr' : '93px 1fr')};
+	grid-template-rows: ${({ hasWallet }) => (hasWallet ? 'calc(186px + 1.25rem) 50px 1fr' : '93px 50px 1fr')};
 	gap: 1rem;
 
 	@media ${device.tablet} {
