@@ -1,4 +1,4 @@
-import { Dispatch, FormEvent, SetStateAction, useState } from 'react';
+import { Dispatch, FormEvent, SetStateAction, useEffect, useState } from 'react';
 import ReactModal from 'react-modal';
 
 import { validateWalletAddress } from '@utils';
@@ -28,8 +28,8 @@ const WalletModal = ({
 	const [importedPublicWalletAddress, setImportedPublicWalletAddress] = useState('');
 	const [importedPublicWalletAddressError, setImportedPublicWalletAddressError] = useState('');
 
-	if (typeof window !== 'undefined') {
-		window.addEventListener('arweaveWalletLoaded', async () => {
+	useEffect(() => {
+		(async () => {
 			setIsArconnectAvailable(Boolean(window.arweaveWallet));
 
 			try {
@@ -38,8 +38,8 @@ const WalletModal = ({
 			} catch (e) {
 				console.log(e);
 			}
-		});
-	}
+		})();
+	}, [setWalletAddress]);
 
 	const connectToArconnect = async () => {
 		await window.arweaveWallet.connect(['ACCESS_ADDRESS'], { name: 'Inferno Rewards Leaderboard' });
