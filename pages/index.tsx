@@ -73,6 +73,7 @@ const Home: NextPage = (): JSX.Element => {
 				<meta name='twitter:title' content='Inferno' />
 				<meta name='twitter:label1' content='Est. reading time' />
 				<meta name='twitter:data1' content='2 minutes' />
+				<script defer data-domain="inferno.ardrive.io" src="https://plausible.io/js/plausible.js"></script>
 			</Head>
 			<StatsContextProvider>
 				<WalletContextProvider>
