@@ -1,11 +1,11 @@
 export const formatBytes = (bytes: number): string => {
-	if (bytes === 0) return '-';
-	const marker = 1024; // Change to 1000 if required
+	if (bytes === 0) return '0';
+	const marker = 1000;
 	const decimal = 3; // Change as required
-	const kiloBytes = marker; // One Kilobyte is 1024 bytes
-	const megaBytes = marker * marker; // One MB is 1024 KB
-	const gigaBytes = marker * marker * marker; // One GB is 1024 MB
-	// const teraBytes = marker * marker * marker * marker; // One TB is 1024 GB
+	const kiloBytes = marker; // One Kilobyte is 1000 bytes
+	const megaBytes = marker * marker; // One MB is 1000 KB
+	const gigaBytes = marker * marker * marker; // One GB is 1000 MB
+	// const teraBytes = marker * marker * marker * marker; // One TB is 1000 GB
 
 	// return bytes if less than a KB
 	if (bytes < kiloBytes) return `${bytes} Bytes`;
