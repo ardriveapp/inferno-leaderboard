@@ -1,3 +1,8 @@
+export const toFixedNoRound = (number: number, precision: number): number => {
+	const factor = Math.pow(10, precision);
+	return Math.floor(number * factor) / factor;
+};
+
 export const formatBytes = (bytes: number): string => {
 	if (bytes === 0) return '0';
 	const marker = 1000;
@@ -10,9 +15,10 @@ export const formatBytes = (bytes: number): string => {
 	// return bytes if less than a KB
 	if (bytes < kiloBytes) return `${bytes} Bytes`;
 	// return KB if less than a MB
-	if (bytes < megaBytes) return `${(bytes / kiloBytes).toFixed(decimal)} KB`;
+	// if (bytes < megaBytes) return `${(bytes / kiloBytes).toFixed(decimal)} KB`;
+	if (bytes < megaBytes) return `${toFixedNoRound(bytes / kiloBytes, decimal)} KB`;
 	// return MB if less than a GB
-	if (bytes < gigaBytes) return `${(bytes / megaBytes).toFixed(decimal)} MB`;
+	if (bytes < gigaBytes) return `${toFixedNoRound(bytes / megaBytes, decimal)} MB`;
 	// return GB if less than a TB
-	return `${(bytes / gigaBytes).toFixed(decimal)} GB`;
+	return `${toFixedNoRound(bytes / gigaBytes, decimal)} GB`;
 };
