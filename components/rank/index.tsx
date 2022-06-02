@@ -63,7 +63,7 @@ const Rank = ({ data }: { data: Data }): JSX.Element => {
 						<span>{positionIndicator(position)}</span>
 					</td>
 					<td>
-						<span>{byteSize}</span>
+						<span>{byteSize === '0' ? '-' : byteSize}</span>
 					</td>
 					<td>
 						<span>{changeInPercentage7d}</span>
