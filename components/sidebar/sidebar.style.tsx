@@ -11,7 +11,7 @@ export const SidebarWrapper = styled.div`
 
 	@media ${device.tablet} {
 		gap: 1rem;
-		grid-template-rows: 1fr 60px 1fr 1fr 1fr 1fr;
+		grid-template-rows: 1fr 60px 1fr 1fr 1fr;
 		grid-template-columns: auto;
 	}
 `;
