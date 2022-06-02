@@ -85,7 +85,7 @@ const getGroupStats = ({
 const GroupStats = ({
 	uploaders,
 	dataUploaded,
-	filesUploaded,
+	/* filesUploaded, */
 	streakers,
 }: {
 	uploaders: number;
@@ -96,7 +96,7 @@ const GroupStats = ({
 	<>
 		<Box text={uploaders} description='Uploaders' />
 		<Box text={formatBytes(dataUploaded)} description='Data Uploaded' />
-		<Box text={filesUploaded} description='Files Uploaded' />
+		{/* <Box text={filesUploaded} description='Files Uploaded' /> */}
 		<Box text={streakers} description='Streakers' />
 	</>
 );
@@ -104,7 +104,7 @@ const GroupStats = ({
 const PersonalStats = ({
 	rank,
 	dataUploaded,
-	filesUploaded,
+	/* filesUploaded, */
 	streaksCompleted,
 	daysStreaked,
 	isMobile,
@@ -120,7 +120,7 @@ const PersonalStats = ({
 		<Box text={rank} description='Rank' />
 		{daysStreaked !== undefined && <Box text={daysStreaked} description='Days Streaked' />}
 		<Box text={formatBytes(dataUploaded)} description={isMobile ? 'Your Data' : 'Data Uploaded'} />
-		{filesUploaded !== undefined && <Box text={filesUploaded} description='Files Uploaded' />}
+		{/* {filesUploaded !== undefined && <Box text={filesUploaded} description='Files Uploaded' />} */}
 		{streaksCompleted !== undefined && <Box text={streaksCompleted} description='Streaks Completed' />}
 	</>
 );
