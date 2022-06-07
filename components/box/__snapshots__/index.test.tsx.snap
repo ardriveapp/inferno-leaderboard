@@ -3,18 +3,18 @@
 exports[`Box renders a text and description with arrow down 1`] = `
 <div>
   <div
-    class="sc-bczRLJ bTmIMl"
+    class="sc-c5d3bdf9-0 iQMcfL"
   >
     <div
-      class="sc-gsnTZi igGEIT"
+      class="sc-c5d3bdf9-1 SVQjy"
     >
       Testing
     </div>
     <div
-      class="sc-dkzDqf hZeSBa"
+      class="sc-c5d3bdf9-2 bgjDJX"
     >
       <span
-        class="sc-hKMtZM bvGUNh"
+        class="sc-c5d3bdf9-3 guJUrK"
       >
         box
       </span>
@@ -40,18 +40,18 @@ exports[`Box renders a text and description with arrow down 1`] = `
 exports[`Box renders a text and description with arrow up 1`] = `
 <div>
   <div
-    class="sc-bczRLJ bTmIMl"
+    class="sc-c5d3bdf9-0 iQMcfL"
   >
     <div
-      class="sc-gsnTZi igGEIT"
+      class="sc-c5d3bdf9-1 SVQjy"
     >
       Testing
     </div>
     <div
-      class="sc-dkzDqf hZeSBa"
+      class="sc-c5d3bdf9-2 bgjDJX"
     >
       <span
-        class="sc-hKMtZM bvGUNh"
+        class="sc-c5d3bdf9-3 guJUrK"
       >
         box
       </span>
@@ -77,18 +77,18 @@ exports[`Box renders a text and description with arrow up 1`] = `
 exports[`Box renders a text and description without arrow 1`] = `
 <div>
   <div
-    class="sc-bczRLJ bTmIMl"
+    class="sc-c5d3bdf9-0 iQMcfL"
   >
     <div
-      class="sc-gsnTZi igGEIT"
+      class="sc-c5d3bdf9-1 SVQjy"
     >
       Testing
     </div>
     <div
-      class="sc-dkzDqf hZeSBa"
+      class="sc-c5d3bdf9-2 bgjDJX"
     >
       <span
-        class="sc-hKMtZM eDrioj"
+        class="sc-c5d3bdf9-3 ciOzeQ"
       >
         box
       </span>

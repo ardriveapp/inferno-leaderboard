@@ -3,7 +3,7 @@
 exports[`Footer renders last updated 1`] = `
 <div>
   <footer
-    class="sc-bczRLJ dcLlNR"
+    class="sc-4cdb7ab7-0 epkdfZ"
   >
     <a
       href="https://ardrive.io/inferno"
@@ -13,7 +13,7 @@ exports[`Footer renders last updated 1`] = `
       Rules
     </a>
     <div
-      class="sc-gsnTZi diJNQx"
+      class="sc-4cdb7ab7-1 cmThVG"
     >
       Last updated: 
       <span>
@@ -21,7 +21,7 @@ exports[`Footer renders last updated 1`] = `
       </span>
     </div>
     <a
-      class="sc-dkzDqf lmpBUx"
+      class="sc-4cdb7ab7-2 fjWZOK"
       href="https://twitter.com/intent/tweet?hashtags=ArDriveInferno&link=https%3A%2F%2Finferno.ardrive.io&related=ardriveapp&text=I%27m%20in%20the%20%40ardriveapp%20Inferno%20%F0%9F%94%A5%21%20In%20this%20reward%20cycle%20the%20group%20already%20uploaded%200%20over%200%20files.Stop%2C%20drop%2C%20%26%20upload%20now%21%20https%3A%2F%2Fapp.ardrive.io"
       target="_blank"
     >
