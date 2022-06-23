@@ -53,7 +53,7 @@ const sendGQLQuery = async (): Promise<GQLResponseType> => {
 	return response.json();
 };
 
-const getMetadataTx = (gqlResponse: GQLResponseType): string => {
+const getMetadataTxId = (gqlResponse: GQLResponseType): string => {
 	const responseData = gqlResponse.data.transactions.edges[0].node;
 	const metadataTxId = responseData.id;
 
@@ -78,7 +78,7 @@ export function useGqlData(): Data | undefined {
 		if (process.env.NODE_ENV === 'production') {
 			(async () => {
 				const gqlResponse = await sendGQLQuery();
-				const metadataTxId = getMetadataTx(gqlResponse);
+				const metadataTxId = getMetadataTxId(gqlResponse);
 
 				const dataTxId = await getDataTxId(metadataTxId);
 				const data = await getData(dataTxId);
