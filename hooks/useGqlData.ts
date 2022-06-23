@@ -2,32 +2,31 @@ import { useEffect, useState } from 'react';
 import { Data } from 'types/dataType';
 import mock from '../mocks/daily_output.json';
 
+const arweaveUrl = 'https://arweave.net';
+const GqlEndpoint = `${arweaveUrl}/graphql`;
+const ownerAddress = 'ZPe6CJ9fqcXZakrV6KQmxOdncfxBOO0v7maNVV0DQGQ';
+const fileId = '7fa5d4e3-0087-422a-acb3-2e481d98d08b';
+
 const GQLQuery = `
 query {
 	transactions(
 		first: 1
+		owners: ["${ownerAddress}"]
 		tags: [{
 			name: "File-Id"
-			values: "7fa5d4e3-0087-422a-acb3-2e481d98d08b"
+			values: "${fileId}"
 		}]
+		sort: HEIGHT_DESC
 	)
 	{
 		edges {
 			node {
 				id
-				owner {
-					address
-				}
 			}
 		}
 	}
 }
 `;
-
-const arweaveUrl = 'https://arweave.net';
-const GqlEndpoint = `${arweaveUrl}/graphql`;
-
-const ownerAddress = 'ZPe6CJ9fqcXZakrV6KQmxOdncfxBOO0v7maNVV0DQGQ';
 
 type GQLResponseType = {
 	data: {
@@ -36,9 +35,6 @@ type GQLResponseType = {
 				{
 					node: {
 						id: string;
-						owner: {
-							address: string;
-						};
 					};
 				},
 			];
@@ -57,16 +53,11 @@ const sendGQLQuery = async (): Promise<GQLResponseType> => {
 	return response.json();
 };
 
-const getMetadataTxAndOwner = (gqlResponse: GQLResponseType) => {
+const getMetadataTxId = (gqlResponse: GQLResponseType): string => {
 	const responseData = gqlResponse.data.transactions.edges[0].node;
 	const metadataTxId = responseData.id;
-	const owner = responseData.owner.address;
 
-	return {
-		metadataTxId,
-		owner,
-		isRealOwner: owner === ownerAddress,
-	};
+	return metadataTxId;
 };
 
 const getDataTxId = async (metadataTxId: string): Promise<string> => {
@@ -87,14 +78,12 @@ export function useGqlData(): Data | undefined {
 		if (process.env.NODE_ENV === 'production') {
 			(async () => {
 				const gqlResponse = await sendGQLQuery();
-				const { metadataTxId, isRealOwner } = getMetadataTxAndOwner(gqlResponse);
+				const metadataTxId = getMetadataTxId(gqlResponse);
 
-				if (isRealOwner) {
-					const dataTxId = await getDataTxId(metadataTxId);
+				const dataTxId = await getDataTxId(metadataTxId);
+				const data = await getData(dataTxId);
 
-					const data = await getData(dataTxId);
-					setData(data);
-				}
+				setData(data);
 			})();
 		} else {
 			setData(mock);
