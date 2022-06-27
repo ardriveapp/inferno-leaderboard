@@ -31,13 +31,6 @@ const WalletModal = ({
 	useEffect(() => {
 		(async () => {
 			setIsArconnectAvailable(Boolean(window.arweaveWallet));
-
-			try {
-				const walletAddress = await window.arweaveWallet.getActiveAddress();
-				setWalletAddress(walletAddress);
-			} catch (e) {
-				console.log(e);
-			}
 		})();
 	}, [setWalletAddress]);
 

@@ -1,6 +1,6 @@
 {
 	"name": "inferno-leaderboard",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "A leaderboard for the Inferno Rewards program",
 	"repository": "git@github.com:ardriveapp/inferno-leaderboard.git",
 	"license": "AGPL-3.0-or-later",
@@ -20,35 +20,36 @@
 		"export": "next export"
 	},
 	"dependencies": {
-		"dayjs": "^1.11.1",
-		"next": "12.1.5",
-		"react": "18.0.0",
-		"react-dom": "18.0.0",
-		"react-is": "^18.0.0",
-		"react-modal": "^3.14.4",
-		"styled-components": "^5.3.5"
+		"dayjs": "^1.11.3",
+		"next": "12.1.6",
+		"react": "18.1.0",
+		"react-dom": "18.1.0",
+		"react-is": "^18.1.0",
+		"react-modal": "^3.15.1"
 	},
 	"devDependencies": {
 		"@testing-library/jest-dom": "^5.16.4",
-		"@testing-library/react": "^13.1.1",
+		"@testing-library/react": "^13.3.0",
 		"@types/byte-size": "^8.1.0",
-		"@types/jest": "^27.4.1",
-		"@types/node": "17.0.25",
-		"@types/react": "18.0.6",
-		"@types/react-dom": "18.0.2",
+		"@types/jest": "^28.1.1",
+		"@types/node": "16.11.37",
+		"@types/react": "18.0.12",
+		"@types/react-dom": "18.0.5",
 		"@types/react-modal": "^3.13.1",
 		"@types/styled-components": "^5.1.25",
-		"eslint": "8.13.0",
-		"eslint-config-next": "12.1.5",
+		"eslint": "8.17.0",
+		"eslint-config-next": "12.1.6",
 		"eslint-config-prettier": "^8.5.0",
-		"husky": ">=7",
-		"jest": "^27.5.1",
-		"lint-staged": ">=10",
+		"husky": "^8.0.1",
+		"jest": "^28.1.1",
+		"jest-environment-jsdom": "^28.1.1",
+		"lint-staged": "^13.0.0",
 		"modern-normalize": "^1.1.0",
 		"prettier": "^2.6.2",
 		"query-string": "^7.1.1",
-		"react-use": "^17.3.2",
-		"typescript": "4.6.3"
+		"react-use": "^17.4.0",
+		"styled-components": "^5.3.5",
+		"typescript": "4.6.4"
 	},
-	"packageManager": "yarn@3.2.0"
+	"packageManager": "yarn@3.2.1"
 }
