@@ -1,6 +1,6 @@
 {
 	"name": "inferno-leaderboard",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"description": "A leaderboard for the Inferno Rewards program",
 	"repository": "git@github.com:ardriveapp/inferno-leaderboard.git",
 	"license": "AGPL-3.0-or-later",
